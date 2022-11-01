@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Review, Comment
+from .models import Review
 from .forms import ReviewForm, CommentForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -49,6 +49,7 @@ def update(request, pk):
             review_form = ReviewForm(request.POST, request.FILES, instance=review)
             if review_form.is_valid():
                 review_form.save()
+                messages.success(request, "수정되었습니다.")
                 return redirect("reviews:detail", review.pk)
         else:
             review_form = ReviewForm(instance=review)
@@ -58,7 +59,8 @@ def update(request, pk):
         }
         return render(request, "reviews/update.html", context)
     else:
-        return redirect("reviews:detail", review.pk)
+        messages.warning(request, "작성자만 수정 가능합니다.")
+        return redirect("reviews:detail", pk)
 
 @login_required
 def delete(request, pk):
@@ -66,6 +68,9 @@ def delete(request, pk):
     if request.user == review.user:
         review.delete()
         return redirect("reviews:index")
+    else:
+        messages.warning(request, "작성자만 삭제 가능합니다.")
+        return redirect("reviews:detail", pk)
 
 
 # 좋아요
@@ -85,7 +90,6 @@ def comment_create(request, pk):
 
     if request.user.is_authenticated:
         form = CommentForm(request.POST)
-
         if form.is_valid():
             comment = form.save(commit=False)
             comment.review = review_data
@@ -100,9 +104,10 @@ def comment_create(request, pk):
 @login_required
 def comment_delete(request, pk, comment_pk):
     review_data = Review.objects.get(pk=pk)
-    comment_data = review_data.comment_set.get(id=comment_pk)
+    comment_data = review_data.comment_set.get(pk=comment_pk)
 
     if request.user == comment_data.user:
         comment_data.delete()
-    
+    else:
+        messages.warning(request, "작성자만 삭제 가능합니다.")
     return redirect('reviews:detail', review_data.pk)

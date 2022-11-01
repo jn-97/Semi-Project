@@ -5,8 +5,8 @@
 
 <form action="" method="POST">
   {% csrf_token %}
-  {{ user_form }}
-  <button type="submit">가입</button>
+  {% bootstrap_form login_form %}
+  <button type="submit">로그인</button>
 </form>
 
 {% endblock %}

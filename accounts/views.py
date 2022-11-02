@@ -6,8 +6,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 # Create your views here.
 
-# 'accounts:any' 는 '리뷰/인덱스' 페이지를 대신하고 있음
-
 def signup(req):
     if req.method == 'POST':
         user_form = CustomUserForm(req.POST)

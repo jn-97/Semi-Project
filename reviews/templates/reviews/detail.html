@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+
+{% load django_bootstrap5 %}
+
+{% block content %}
+  <!-- 임시적으로 긁어옴-->
+  <div>
+    <div>
+      <p class=" fw-bold fs-5 m-0">{{ review.user.username }}
+        <a class="title_link" href="{% url 'accounts:detail' review.user.pk%}">
+          <i style="color: black;" class="bi bi-person-circle px-2"></i>
+        </a>
+      </p>
+      <h2>{{ review.title}}</h2>
+      <div class="d-flex justify-content-between">
+        <div>
+          {% if review.grade == 1 %}
+            <p>
+              내 평점
+              <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
+              <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
+              <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
+              <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
+              <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
+            </p>
+          {% elif review.grade == 2 %}
+            내 평점
+            <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
+            <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
+            <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
+            <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
+            <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
+          {% elif review.grade == 3 %}
+            내 평점
+            <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
+            <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
+            <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
+            <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
+            <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
+          {% elif review.grade == 4 %}
+            내 평점
+            <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
+            <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
+            <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
+            <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
+            <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
+          {% elif review.grade == 5 %}
+            내 평점
+            <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
+            <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
+            <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
+            <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
+            <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
+          {% endif %}
+        </p>
+
+      </div>
+      <p class="px-3">
+        {{ review.updated_at|date:"SHORT_DATETIME_FORMAT" }}
+      </p>
+    </div>
+  </div>
+  <span>조회수 : {{ review.hits }} 댓글 수 : {{ review.comment_set.count }}</span>
+  <hr>
+  <p>{{ review.content }}
+  </p>
+</div>
+<div class="d-flex justify-content-between">
+  <div>
+    {% if request.user.is_authenticated %}
+      {% if request.user in review.like_users.all %}
+        <a class="title_link" href="{% url 'reviews:like' review.pk %}">
+          <i style="color:red;" class="hart bi bi-heart-fill"></i>
+        </a>
+      {% else %}
+        <a href="{% url 'reviews:like' review.pk %}">
+          <i style="color:red;" class="hart bi bi-heart"></i>
+        </a>
+      {% endif %}
+    {% endif %}
+    
+  </div>
+  <div class="px-3">
+    <i style="color:red;" class="hart bi bi-heart-fill"></i>
+    <span>{{ review.like_users.count }}</span>
+  </div>
+</div>
+<div class="my-5 py-5">
+  {% if request.user.is_authenticated %}
+
+    <form action="{% url 'reviews:comment_create' review.pk %}" method="POST">
+      {% csrf_token %}
+      {% bootstrap_form commentform %}
+      <br>
+      <button class="float-end btn btn-primary ">등록</button>
+    </form>
+  {% endif %}
+
+  <div class=" py-5">
+    <h6 class="mt-3">
+      댓글 수 :
+      {{ review.comment_set.count }}</h6>
+    <hr>
+
+    {% for comment in comments %}
+      <div>
+        <div>
+          <p class=" fw-bold fs-5 m-0">{{ comment.user.username }}
+            <a class="title_link" href="{% url 'accounts:detail' comment.user.pk%}">
+              <i style="color: black;" class="bi bi-person-circle px-2"></i>
+            </a>
+          </p>
+          <p class="fs-6">{{ comment.created_at|date:"SHORT_DATETIME_FORMAT" }}</p>
+          <p class="m-0 fs-6">{{ comment.content }}</p>
+          <div>
+            {% if request.user == comment.user %}
+              <form action="{% url 'reviews:comment_delete' review.pk comment.pk %}" method="POST">
+                {% csrf_token %}
+                <button class="btn btn-link p-0" style="color: red; text-decoration: none;">삭제</button>
+              </form>
+            {% else %}
+            {% endif %}
+          </div>
+        </div>
+        <hr>
+        {% empty %}
+        <p>댓글이 없습니다.</p>
+      {% endfor %}
+    </div>
+  </div>
+  <div>
+    <a class="float-end btn btn-dark m-1" href="{% url 'reviews:index' %}">목록</a>
+    {% if request.user == review.user %}
+      <a class="float-end btn btn-primary m-1" href="{% url 'reviews:update' review.pk %}">
+        수정
+      </a>
+      <a class="float-end btn btn-danger m-1" href="{% url 'reviews:delete' review.pk %}">
+        삭제
+      </a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<!-- kakao map api -->
+<div id="map" style="width:500px;height:400px;"></div>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f62f26e6ae37a63537ff0648ebc89d02"></script>
+<script>
+  var container = document.getElementById('map');
+  var options = {
+    center: new kakao.maps.LatLng(37.50126266318986, 127.03961596063836), 
+    level: 3
+  };
+
+  var map = new kakao.maps.Map(container, options);
+  // 지도를 클릭한 위치에 표출할 마커입니다
+  var marker = new kakao.maps.Marker({ 
+      // 지도 중심좌표에 마커를 생성합니다 
+      position: map.getCenter() 
+  }); 
+  // 지도에 마커를 표시합니다
+  marker.setMap(map);
+</script>
+
+{% endblock %}

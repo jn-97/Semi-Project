@@ -1,5 +1,4 @@
 import datetime
-from email.policy import default
 from django.shortcuts import render, redirect
 from .models import Review
 from .forms import ReviewForm, CommentForm

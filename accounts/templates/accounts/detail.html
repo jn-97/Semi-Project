@@ -3,12 +3,25 @@
 
 {% block content %}
 
-  <p>{{ user.username }}</p>
 
-  {% if user.profile %}
-    <img src="{{ user.profile.url }}" alt="">
+<h1 class="text-center">{{ user.username }}의 디테일</h1>
+
+{% if user.profile %}
+<img src="{{ user.profile.url }}" alt="">
+{% else %}
+<p>프로필사진을 등록해주셈</p>
+{% endif %}
+
+<p>팔로우 | {{ user.following.count }}</a></p>
+<p>팔로워 | {{ user.followers.count }}</p>
+{% if request.user != user %}
+<a href="{% url 'accounts:follow' user.pk %}">
+  {% if request.user in user.follower.all %}
+  팔로우 취소
   {% else %}
-    <p>프로필사진을 등록해주셈</p>
+  팔로우
   {% endif %}
+</a>
+{% endif %}
 
 {% endblock %}

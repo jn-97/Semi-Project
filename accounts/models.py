@@ -10,5 +10,4 @@ class User(AbstractUser):
                                 processors=[ResizeToFill(100, 100)],
                                 format='JPEG',
                                 options={'quality': 50})
-    following = models.ManyToManyField('self', symmetrical=False, related_name='followers')
-    
+    following = models.ManyToManyField('self', symmetrical=False, related_name='follower')

@@ -3,13 +3,12 @@
 
 {% block content %}
 
-<p>{{ user.username }}</p>
+  <p>{{ user.username }}</p>
 
-{% if user.profile %}
-<img src="{{ user.profile.url }}" alt="">
-{% else %}
-<p>프로필사진을 등록해주셈</p>
-{% endif %}
-
+  {% if user.profile %}
+    <img src="{{ user.profile.url }}" alt="">
+  {% else %}
+    <p>프로필사진을 등록해주셈</p>
+  {% endif %}
 
 {% endblock %}

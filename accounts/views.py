@@ -75,8 +75,8 @@ def update(req, pk):
 def follow(req, pk):
     user = get_user_model().objects.get(pk=pk)
     if user != req.user:
-        if user.following.filter(pk=req.user.pk).exist():
-            user.following.remove(req.user)
+        if user.followers.filter(pk=req.user.pk):
+            user.followers.remove(req.user)
         else:
-            user.following.add(req.user)
+            user.followers.add(req.user)
     return redirect('accounts:detail', pk)        

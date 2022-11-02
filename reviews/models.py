@@ -7,10 +7,36 @@ from imagekit.processors import ResizeToFill
 
 # Create your models here.
 
-class Review(models.Model):
+class Restaurant(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    title = models.CharField(max_length=40)
-    content = models.TextField()
+    name = models.CharField(max_length=20)
+    SORT = [
+        (1, "양식"),
+        (2, "중식"),
+        (3, "한식"),
+        (4, "일식"),
+    ]
+    sorted = models.IntegerField(choices=SORT, default=None)
+    runtime = models.CharField(max_length=100)
+    closing = models.CharField(max_length=100)
+    image = ProcessedImageField(
+        upload_to = 'images/',
+        blank = True,
+        processors=[ResizeToFill(700, 700)],
+        format='JPEG',
+        options={"quality": 80},
+    )
+    hits = models.IntegerField(default=0)
+    want_go = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, related_name="liked_user"
+    )
+
+
+class Comment(models.Model):
+    content = models.TextField(max_length=300, blank=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     RATING = [
         (1, "★"),
         (2, "★★"),
@@ -18,23 +44,4 @@ class Review(models.Model):
         (4, "★★★★"),
         (5, "★★★★★"),
     ]
-
     grade = models.IntegerField(choices=RATING, default=None)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    image = ProcessedImageField(
-        upload_to = 'images/',
-        blank = True,
-        processors=[ResizeToFill(300, 400)],
-        format='JPEG',
-        options={"quality": 90},
-    )
-    like_users = models.ManyToManyField(
-        settings.AUTH_USER_MODEL, related_name="like_reviews"
-    )
-
-class Comment(models.Model):
-    content = models.TextField(max_length=300, blank=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    review = models.ForeignKey(Review, on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

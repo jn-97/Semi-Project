@@ -14,7 +14,7 @@ def signup(req):
         if user_form.is_valid():
             user = user_form.save()
             login(req, user)
-            return redirect('reviews:index')
+            return redirect('restaurants:index')
     else:
         user_form = CustomUserForm()
     cxt = {
@@ -34,7 +34,7 @@ def log_in(req):
         login_form = AuthenticationForm(req, data=req.POST)
         if login_form.is_valid():
             login(req, login_form.get_user())
-            return redirect(req.GET.get('next') or 'reviews:index')
+            return redirect(req.GET.get('next') or 'restaurants:index')
     else:
         login_form = AuthenticationForm()
     cxt = {
@@ -45,7 +45,7 @@ def log_in(req):
 @login_required
 def log_out(req):
     logout(req)
-    return redirect('reviews:index')
+    return redirect('restaurants:index')
 
 def detail(req, pk):
     user = get_user_model().objects.get(pk=pk)

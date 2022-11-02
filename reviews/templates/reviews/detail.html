@@ -60,6 +60,7 @@
       </p>
     </div>
   </div>
+  <p>조회수 : {{ review.hits }}</p>
   <hr>
   <p>{{ review.content }}
   </p>
@@ -88,7 +89,7 @@
 
     <form action="{% url 'reviews:comment_create' review.pk %}" method="POST">
       {% csrf_token %}
-      {% bootstrap_form commentform layout = 'inline' %}
+      {% bootstrap_form commentform layout='inline' %}
       <br>
       <button class="float-end btn btn-primary ">등록</button>
     </form>
@@ -134,21 +135,6 @@
       <a class="float-end btn btn-danger m-1" href="{% url 'reviews:delete' review.pk %}">
         삭제
       </a>
-    {% else %}
-      <a class="float-end btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#exampleModal" href="">
-        수정
-      </a>
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-body">
-              <p>권한이 없습니다.</p>
-              <div class="float-end">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">돌아가기</button>
-              </div>
-            </div>
-          </div>
-        </div>
       {% endif %}
 
     </div>

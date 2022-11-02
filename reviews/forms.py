@@ -19,6 +19,10 @@ class CommentForm(forms.ModelForm):
             "review",
             "user",
         )
+        labels = {
+            'grade': '평점',
+            'content': '댓글',
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

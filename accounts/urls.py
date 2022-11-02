@@ -11,5 +11,4 @@ urlpatterns = [
     path('<int:pk>/detail/', views.detail, name='detail'),
     path('<int:pk>/update/', views.update, name='update'),
     path('follow/<int:pk>/', views.follow, name='follow'),
-    path('any/', views.any, name='any'),
 ]

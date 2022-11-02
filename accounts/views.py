@@ -7,8 +7,6 @@ from django.contrib.auth.forms import AuthenticationForm
 # Create your views here.
 
 # 'accounts:any' 는 '리뷰/인덱스' 페이지를 대신하고 있음
-def any(req):
-    return render(req,'accounts/any.html')
 
 def signup(req):
     if req.method == 'POST':
@@ -16,7 +14,7 @@ def signup(req):
         if user_form.is_valid():
             user = user_form.save()
             login(req, user)
-            return redirect('accounts:any')
+            return redirect('reviews:index')
     else:
         user_form = CustomUserForm()
     cxt = {
@@ -36,7 +34,7 @@ def log_in(req):
         login_form = AuthenticationForm(req, data=req.POST)
         if login_form.is_valid():
             login(req, login_form.get_user())
-            return redirect(req.GET.get('next') or 'accounts:any')
+            return redirect(req.GET.get('next') or 'reviews:index')
     else:
         login_form = AuthenticationForm()
     cxt = {
@@ -47,7 +45,7 @@ def log_in(req):
 @login_required
 def log_out(req):
     logout(req)
-    return redirect('accounts:any')
+    return redirect('reviews:index')
 
 def detail(req, pk):
     user = get_user_model().objects.get(pk=pk)
@@ -75,8 +73,8 @@ def update(req, pk):
 def follow(req, pk):
     user = get_user_model().objects.get(pk=pk)
     if user != req.user:
-        if user.following.filter(pk=req.user.pk).exist():
-            user.following.remove(req.user)
+        if req.user.following.filter(pk=pk).exists():
+            req.user.following.remove(user)
         else:
-            user.following.add(req.user)
-    return redirect('accounts:detail', pk)        
+            req.user.following.add(user)
+    return redirect('accounts:detail', pk)

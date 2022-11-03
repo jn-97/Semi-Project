@@ -33,10 +33,6 @@ class Restaurant(models.Model):
 
 
 class Comment(models.Model):
-    content = models.TextField(max_length=300, blank=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     RATING = [
         (1, "★"),
         (2, "★★"),
@@ -45,3 +41,7 @@ class Comment(models.Model):
         (5, "★★★★★"),
     ]
     grade = models.IntegerField(choices=RATING, default=None)
+    content = models.TextField(max_length=300, blank=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

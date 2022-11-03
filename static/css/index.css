@@ -24,6 +24,27 @@ hr { display: block; height: 1px;
     color:black;
 }
 
+.bi-google {
+  background: conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+
+.btns:hover{
+  background-color: #A8A8A8;
+}
+
+.bi-facebook {
+  color: #3b5998;
+  background-image: linear-gradient( to bottom, transparent 30%, white 30%, white 79%, transparent 83% );
+  background-size: 55%;
+  background-position: 70% 0;
+  background-repeat: no-repeat;
+}
+
 .card-text {
   overflow: hidden;
   white-space: normal;
@@ -66,3 +87,20 @@ img {width:100%;}
       background-color: #fff;
       transition: background-color 200ms, linear;
     }
+
+
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+.h-custom {
+height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+.h-custom {
+height: 100%;
+}
+}

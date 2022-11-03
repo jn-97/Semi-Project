@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load django_bootstrap5 %}
+
+{% block content %}
+
+  <h1>hi</h1>
+
+  <div class="card-group row-cols-4">
+    {% for r in restaurants %}
+      <div class="col p-3">
+        <div class="card">
+          {% if r.image %}
+            <img src="{{ r.image.url }}" class="card-img-top">
+          {% else %}
+            <img src="https://dummyimage.com/900x1200/000000/c4c4c4" class="card-img-top">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">제목 :
+              <a class="title_link" href="{% url 'restaurants:detail' r.pk %}">
+                {{ r.name }}</a>
+            </h5>
+            <div class="card-footer">
+              <small class="text-muted">
+                조회수 :
+                {{ r.hits }}</small>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+  {% endblock content %}

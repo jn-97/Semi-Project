@@ -1,33 +1,440 @@
-{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% load django_bootstrap5 %}
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-{% block content %}
+    <title>Document</title>
 
-<h1>hi</h1>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="icon" href="https://cdn.discordapp.com/attachments/993057372455043102/1019519216929476619/unknown.png">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8 /swiper-bundle.min.css">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="static/css/index.css">
 
-<div class="card-group row-cols-4">
-  {% for r in restaurants %}
-  <div class="col p-3">
-    <div class="card">
-      {% if r.image %}
-      <img src="{{ r.image.url }}" class="card-img-top">
-      {% else %}
-      <img src="https://dummyimage.com/900x1200/000000/c4c4c4" class="card-img-top">
-      {% endif %}
-      <div class="card-body">
-        <h5 class="card-title">제목 :
-          <a class="title_link" href="{% url 'restaurants:detail' r.pk %}">
-            {{ r.name }}</a>
-        </h5>
-        <div class="card-footer">
-          <small class="text-muted">
-            조회수 :
-            {{ r.hits }}</small>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/5.2.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <!-- navbar(swiper-slide)-->
+    <div class="a">
+      <div class="fixed-top">
+        <nav class="navbar navbar-expand-lg p-0 bg-light">
+          <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarTogglerDemo01">
+              <div class="d-flex align-items-center">
+                <a class="navbar-brand mr-2 text-light" href="#">밥사조</a>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active p-0 text-light" aria-current="page" href="#">KDT NO.1 맛집 서비스</a>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="class">
+                <form action="">
+                  <div class="search-bar input-group">
+                    <input class="form-control rounded-2 text-left btn-lg" type="text" style="min-width: 400px;" placeholder="돈 주고 별 사는 서비스는 그만! 후기들은 만드는 찐 별맛집" aria-label="Search">
+                    <button type="button" class="btn" style="background-color: #C8A666">
+                      <i class="bi bi-search"></i>
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <div>
+                <button type="button" class="btn text-center">
+                  <a href="" class="text-decoration-none text-light">로그인</a>
+                </button>
+                <span class="badge bg-dark text-white text-decoration-none rounded-4 ms-1">0</span>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <!-- 다음줄-->
+        <hr class="mb-1">
+        <div class="col-8 d-flex justify-content-evenly m-auto mt-3 mb-3">
+          <span>
+            <a href="" class="text-decoration-none text-light">맛집찾기</a>
+          </span>
+          <span>
+            <a href="" class="text-decoration-none text-light">테마</a>
+          </span>
+          <span>
+            <a href="" class="text-decoration-none text-light">마켓</a>
+          </span>
+        </div>
+        <!-- 표지 and 캐러셀-->
+        <div class="m-0 px-4">
+          <div class="d-flex justify-content-center align-items-center h-100"></div>
         </div>
       </div>
     </div>
-    {% endfor %}
+  </div>
+  <!-- 당신을 위한 이 지역 HOT 매장추천-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/css/swiper.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/js/swiper.min.js"></script>
+  <div class="container">
+    <div class="row mb-3 mt-3 p-0">
+      <div class="col-md-12 p-0">
+        <h3>당신을 위한 이 지역 HOT 매장추천</h3>
+      </div>
+    </div>
+    <div class="row">
+      <!-- Swiper -->
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="card">
+                  <div class="card-img"><img src="./images/스테이크.jpeg" style="height: 200px;"></div>
+                  <div class="card-body">
+                    <h5>스테이크</h5>
+                    <h4 class="pt-1 pb-2">50000원</h4>
+
+                    <button type="button" class="btn btn-outline-danger btn-block btn-sm">구매하기</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card">
+                  <div class="card-img"><img src="{% static '고기.png' %}" style="height: 200px;"></div>
+                  <div class="card-body">
+                    <h5>고기</h5>
+                    <h4 class="pt-1 pb-2">100000원</h4>
+
+                    <button type="button" class="btn btn-outline-danger btn-block btn-sm">구매하기</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card">
+                  <div class="card-img"><img src="./images/고기.png" style="height: 200px;"></div>
+                  <div class="card-body">
+                    <h5>고기</h5>
+                    <h4 class="pt-1 pb-2">200000원</h4>
+
+                    <button type="button" class="btn btn-outline-danger btn-block btn-sm">구매하기</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card">
+                  <div class="card-img"><img src="./images/고기.png" style="height: 200px;"></div>
+                  <div class="card-body">
+                    <h5>고기</h5>
+                    <h4 class="pt-1 pb-2">300000원</h4>
+
+                    <button type="button" class="btn btn-outline-danger btn-block btn-sm">구매하기</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="card">
+                  <div class="card-img"><img src="./images/고기.png" style="height: 200px;"></div>
+                  <div class="card-body">
+                    <h5>고기</h5>
+                    <h4 class="pt-1 pb-2">350000원</h4>
+
+                    <button type="button" class="btn btn-outline-danger btn-block btn-sm">구매하기</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card">
+                  <div class="card-img"><img src="./images/고기.png" style="height: 200px;"></div>
+                  <div class="card-body">
+                    <h5>고기</h5>
+                    <h4 class="pt-1 pb-2">250000원</h4>
+
+                    <button type="button" class="btn btn-outline-danger btn-block btn-sm">구매하기</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card">
+                  <div class="card-img"><img src="./images/고기.png" style="height: 200px;"></div>
+                  <div class="card-body">
+                    <h5>고기</h5>
+                    <h4 class="pt-1 pb-2">130000원</h4>
+
+                    <button type="button" class="btn btn-outline-danger btn-block btn-sm">구매하기</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card">
+                  <div class="card-img"><img src="./images/고기.png" style="height: 200px;"></div>
+                  <div class="card-body">
+                    <h5>고기</h5>
+                    <h4 class="pt-1 pb-2">1500000원</h4>
+
+                    <button type="button" class="btn btn-outline-danger btn-block btn-sm">구매하기</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="card">
+                  <div class="card-img"><img src="./images/고기.png" style="height: 200px;"></div>
+                  <div class="card-body">
+                    <h5>고기</h5>
+                    <h4 class="pt-1 pb-2">124000원</h4>
+
+                    <button type="button" class="btn btn-outline-danger btn-block btn-sm">구매하기</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card">
+                  <div class="card-img"><img src="./images/고기.png" style="height: 200px;"></div>
+                  <div class="card-body">
+                    <h5>고기</h5>
+                    <h4 class="pt-1 pb-2">156000원</h4>
+
+                    <button type="button" class="btn btn-outline-danger btn-block btn-sm">구매하기</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card">
+                  <div class="card-img"><img src="./images/고기.png" style="height: 200px;"></div>
+                  <div class="card-body">
+                    <h5>고기</h5>
+                    <h4 class="pt-1 pb-2">174000원</h4>
+                    <button type="button" class="btn btn-outline-danger btn-block btn-sm">구매하기</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card">
+                  <div class="card-img"><img src="./images/고기.png" style="height: 200px;"></div>
+                  <div class="card-body">
+                    <h5>고기</h5>
+                    <h4 class="pt-1 pb-2">194000원</h4>
+
+                    <button type="button" class="btn btn-outline-danger btn-block btn-sm">구매하기</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+
+    </div>
   </div>
 
-  {% endblock content %}
+  <!--맛집 생생후기 -->
+  <div style="background-color: #DCDCDC">
+    <div class="container flex-row mt-3">
+      <div class="d-flex justify-content-between align-items-center">
+        <h5 class="mb-3 fw-bold mt-5">맛집 생생후기</h5>
+        <a href="" class="mt-4 fs-6">더보기</a>
+      </div>
+      <div class="row">
+        <div class="card mb-3 bg-transparent border-0" style="max-width: 400px;">
+          <div class="row g-0">
+            <div class="col-md-6">
+              <img src="./images/표지.jpeg" class="img-fluid" style="height: 188px;" alt="...">
+            </div>
+            <div class="col-md-6">
+              <div class="card-body p-0 ms-3">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">bit</p>
+                <p class="card-text">
+                  <small class="text-muted">Last updated 3 mins ago</small>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-3 bg-transparent border-0" style="max-width: 400px;">
+          <div class="row g-0">
+            <div class="col-md-6">
+              <img src="./images/표지.jpeg" class="img-fluid" style="height: 188px;" alt="...">
+            </div>
+            <div class="col-md-6">
+              <div class="card-body p-0 ms-3">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text">
+                  <small class="text-muted">Last updated 3 mins ago</small>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-3 bg-transparent border-0" style="max-width: 400px;">
+          <div class="row g-0">
+            <div class="col-md-6">
+              <img src="./images/표지.jpeg" class="img-fluid" style="height: 188px;" alt="...">
+            </div>
+            <div class="col-md-6">
+              <div class="card-body p-0 ms-3">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text">
+                  <small class="text-muted">Last updated 3 mins ago</small>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--최신 Trend 맛집 테마-->
+  <div class="container mt-5">
+    <h5 class="mb-3 fw-bold">최신 Trend 맛집 테마</h5>
+    <div class="row row-cols-1 row-cols-md-4 g-5 blogBox moreBox">
+      <div class="col">
+        <div class="card">
+          <img src="./images/표지.jpeg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col blogBox moreBox">
+        <div class="card">
+          <img src="./images/표지.jpeg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col blogBox moreBox">
+        <div class="card">
+          <img src="./images/표지.jpeg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col blogBox moreBox">
+        <div class="card">
+          <img src="./images/표지.jpeg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col blogBox moreBox" style="display: none;">
+        <div class="card">
+          <img src="./images/표지.jpeg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col blogBox moreBox" style="display: none;">
+        <div class="card">
+          <img src="./images/표지.jpeg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col blogBox moreBox" style="display: none;">
+        <div class="card">
+          <img src="./images/표지.jpeg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col blogBox moreBox" style="display: none;">
+        <div class="card">
+          <img src="./images/표지.jpeg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col blogBox moreBox" style="display: none;">
+        <div class="card">
+          <img src="./images/표지.jpeg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col blogBox moreBox" style="display: none;">
+        <div class="card">
+          <img src="./images/표지.jpeg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col blogBox moreBox" style="display: none;">
+        <div class="card">
+          <img src="./images/표지.jpeg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col blogBox moreBox" style="display: none;">
+        <div class="card">
+          <img src="./images/표지.jpeg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mb-5 container" id="loadMore">
+    <a href="#" style="text-decoration:none;">더보기</a>
+  </div>
+  <!--footer-->
+  <hr>
+  <div>
+    <footer class="text-center mt-5">
+      Django-project by 이호빈,김지연,이상백, 이은진
+    </footer>
+  </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/js/swiper.min.js"></script>
+<script src="/static/js/asd.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+</html>

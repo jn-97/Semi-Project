@@ -6,19 +6,21 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 # Create your views here.
 
-def signup(req):
-    if req.method == 'POST':
-        user_form = CustomUserForm(req.POST)
+def signup(request):
+    if request.method == 'POST':
+        user_form = CustomUserForm(request.POST)
         if user_form.is_valid():
+            # email = user_form.cleaned_data.get('email').lower()
+            # pass_word = user_form.cleaned_data.get('password1')
             user = user_form.save()
-            login(req, user)
+            login(request, user)
             return redirect('restaurants:index')
     else:
         user_form = CustomUserForm()
     cxt = {
         'user_form' : user_form
     }
-    return render(req, 'accounts/signup.html', cxt)
+    return render(request, 'accounts/signup.html', cxt)
 
 @login_required
 def delete(req, pk):

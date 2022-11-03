@@ -33,10 +33,10 @@
             </button>
             <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarTogglerDemo01">
               <div class="d-flex align-items-center">
-                <a class="navbar-brand mr-2 text-light" href="#">밥사조</a>
+                <a class="navbar-brand mr-2 text-dark" href="{% url 'restaurants:index' %}">밥사조</a>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active p-0 text-light" aria-current="page" href="#">KDT NO.1 맛집 서비스</a>
+                    <a class="nav-link active p-0 text-dark" aria-current="page" href="{% url 'restaurants:index' %}">KDT NO.1 맛집 서비스</a>
                   </li>
                 </ul>
               </div>
@@ -53,7 +53,7 @@
               </div>
               <div>
                 <button type="button" class="btn text-center">
-                  <a href="" class="text-decoration-none text-light">로그인</a>
+                  <a href="{% url 'accounts:login'%}" class="text-decoration-none text-black">로그인</a>
                 </button>
                 <span class="badge bg-dark text-white text-decoration-none rounded-4 ms-1">0</span>
               </div>
@@ -65,13 +65,13 @@
         <hr class="mb-1">
         <div class="col-8 d-flex justify-content-evenly m-auto mt-3 mb-3">
           <span>
-            <a href="" class="text-decoration-none text-light">맛집찾기</a>
+            <a href="" class="text-decoration-none text-black">맛집찾기</a>
           </span>
           <span>
-            <a href="" class="text-decoration-none text-light">테마</a>
+            <a href="" class="text-decoration-none text-black">테마</a>
           </span>
           <span>
-            <a href="" class="text-decoration-none text-light">마켓</a>
+            <a href="" class="text-decoration-none text-black">마켓</a>
           </span>
         </div>
         <!-- 표지 and 캐러셀-->
@@ -81,11 +81,12 @@
       </div>
     </div>
   </div>
+
   <!-- 당신을 위한 이 지역 HOT 매장추천-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/css/swiper.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/js/swiper.min.js"></script>
   <div class="container">
-    <div class="row mb-3 mt-3 p-0">
+    <div class="row mb-3 mt-5 p-0">
       <div class="col-md-12 p-0">
         <h3>당신을 위한 이 지역 HOT 매장추천</h3>
       </div>
@@ -96,155 +97,32 @@
         <div class="swiper-wrapper">
           <div class="swiper-slide">
             <div class="row">
-              <div class="col-md-3">
-                <div class="card">
-                  <div class="card-img"><img src="./images/스테이크.jpeg" style="height: 200px;"></div>
-                  <div class="card-body">
-                    <h5>스테이크</h5>
-                    <h4 class="pt-1 pb-2">50000원</h4>
-
+              {% for restaurant in restaurants %}
+                <div class="col-md-3">
+                  <div class="card">
+                    {% if restaurant.image %}
+                      <img src="{{ restaurant.image.url }}" class="card-img-top">
+                    {% else %}
+                      <img src="https://dummyimage.com/900x1200/000000/c4c4c4" class="card-img-top">
+                    {% endif %}
+                    <div class="card-body">
+                      <h4 class="card-title">
+                        <a class="title_link text-decoration-none" href="{% url 'restaurants:detail' restaurant.pk %}">{{ restaurant.name }}</a>
+                        <p class="mt-3">{{ restaurant.runtime}}</p>
+                        <small class="mb-0">{{ restaurant.closing }}</small>
+                      </h4>
+                      <small class="text-muted">
+                        조회수 :
+                        {{ restaurant.hits }}</small>
+                    </div>
                     <button type="button" class="btn btn-outline-danger btn-block btn-sm">구매하기</button>
                   </div>
                 </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card">
-                  <div class="card-img"><img src="{% static '고기.png' %}" style="height: 200px;"></div>
-                  <div class="card-body">
-                    <h5>고기</h5>
-                    <h4 class="pt-1 pb-2">100000원</h4>
-
-                    <button type="button" class="btn btn-outline-danger btn-block btn-sm">구매하기</button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card">
-                  <div class="card-img"><img src="./images/고기.png" style="height: 200px;"></div>
-                  <div class="card-body">
-                    <h5>고기</h5>
-                    <h4 class="pt-1 pb-2">200000원</h4>
-
-                    <button type="button" class="btn btn-outline-danger btn-block btn-sm">구매하기</button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card">
-                  <div class="card-img"><img src="./images/고기.png" style="height: 200px;"></div>
-                  <div class="card-body">
-                    <h5>고기</h5>
-                    <h4 class="pt-1 pb-2">300000원</h4>
-
-                    <button type="button" class="btn btn-outline-danger btn-block btn-sm">구매하기</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="row">
-              <div class="col-md-3">
-                <div class="card">
-                  <div class="card-img"><img src="./images/고기.png" style="height: 200px;"></div>
-                  <div class="card-body">
-                    <h5>고기</h5>
-                    <h4 class="pt-1 pb-2">350000원</h4>
-
-                    <button type="button" class="btn btn-outline-danger btn-block btn-sm">구매하기</button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card">
-                  <div class="card-img"><img src="./images/고기.png" style="height: 200px;"></div>
-                  <div class="card-body">
-                    <h5>고기</h5>
-                    <h4 class="pt-1 pb-2">250000원</h4>
-
-                    <button type="button" class="btn btn-outline-danger btn-block btn-sm">구매하기</button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card">
-                  <div class="card-img"><img src="./images/고기.png" style="height: 200px;"></div>
-                  <div class="card-body">
-                    <h5>고기</h5>
-                    <h4 class="pt-1 pb-2">130000원</h4>
-
-                    <button type="button" class="btn btn-outline-danger btn-block btn-sm">구매하기</button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card">
-                  <div class="card-img"><img src="./images/고기.png" style="height: 200px;"></div>
-                  <div class="card-body">
-                    <h5>고기</h5>
-                    <h4 class="pt-1 pb-2">1500000원</h4>
-
-                    <button type="button" class="btn btn-outline-danger btn-block btn-sm">구매하기</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="row">
-              <div class="col-md-3">
-                <div class="card">
-                  <div class="card-img"><img src="./images/고기.png" style="height: 200px;"></div>
-                  <div class="card-body">
-                    <h5>고기</h5>
-                    <h4 class="pt-1 pb-2">124000원</h4>
-
-                    <button type="button" class="btn btn-outline-danger btn-block btn-sm">구매하기</button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card">
-                  <div class="card-img"><img src="./images/고기.png" style="height: 200px;"></div>
-                  <div class="card-body">
-                    <h5>고기</h5>
-                    <h4 class="pt-1 pb-2">156000원</h4>
-
-                    <button type="button" class="btn btn-outline-danger btn-block btn-sm">구매하기</button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card">
-                  <div class="card-img"><img src="./images/고기.png" style="height: 200px;"></div>
-                  <div class="card-body">
-                    <h5>고기</h5>
-                    <h4 class="pt-1 pb-2">174000원</h4>
-                    <button type="button" class="btn btn-outline-danger btn-block btn-sm">구매하기</button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card">
-                  <div class="card-img"><img src="./images/고기.png" style="height: 200px;"></div>
-                  <div class="card-body">
-                    <h5>고기</h5>
-                    <h4 class="pt-1 pb-2">194000원</h4>
-
-                    <button type="button" class="btn btn-outline-danger btn-block btn-sm">구매하기</button>
-                  </div>
-                </div>
-              </div>
+              {% endfor %}
             </div>
           </div>
         </div>
-        <!-- Add Pagination -->
-        <div class="swiper-pagination"></div>
-        <!-- Add Arrows -->
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
       </div>
-
     </div>
   </div>
 

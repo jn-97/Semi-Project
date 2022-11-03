@@ -4,6 +4,7 @@ from .models import Restaurant, Comment
 from .forms import RestaurantForm, CommentForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count, Avg
 
 def index(request):
     restaurants = Restaurant.objects.order_by('-pk')
@@ -29,7 +30,6 @@ def create(request):
     }
     return render(request, "restaurants/create.html", context)
 
-@login_required
 def detail(request, pk):
     restaurant = Restaurant.objects.get(pk=pk)
     comments = restaurant.comment_set.all()

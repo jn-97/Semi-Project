@@ -4,95 +4,68 @@
 {% block content %}
 {% load static %}
 
-<section class="vh-100" style="background-color: #eee;">
-  <div class="container h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-lg-12 col-xl-11">
-        <div class="card text-black" style="border-radius: 25px;">
-          <div class="card-body p-md-5">
-            <div class="row justify-content-center">
-              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-
-                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">회원가입</p>
-
-                <form class="mx-1 mx-md-4" action="" method="POST">
-                  {% csrf_token %}
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <label class="form-label" for="user_name" >아이디</label>
-                      <input type="text" id="user_name" class="form-control" name="username"/>
-                    </div>
-                  </div>
-
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <label class="form-label" for="form3Example3c">이메일</label>
-                      <input type="email" id="form3Example3c" class="form-control" name="email"/>
-                    </div>
-                  </div>
-
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <label class="form-label" for="form3Example4c">비밀번호</label>
-                      <input type="password" id="form3Example4c" class="form-control" name="password1" />
-                    </div>
-                  </div>
-
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <label class="form-label" for="form3Example4cd">비밀번호 확인</label>
-                      <input type="password" id="form3Example4cd" class="form-control" name="password2"/>
-                    </div>
-                  </div>
-
-                  <div class="form-check d-flex justify-content-center mb-5">
-                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
-                    <label class="form-check-label" for="form2Example3">
-                      모든 약관에 동의합니다 <a href="#!">서비스 약관</a>
-                    </label>
-                  </div>
-
-                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                    <button type="submit" class="btn btn-primary btn-lg">회원가입</button>
-                  </div>
-                  <div class="cotainer">
-                    <div class= "mb-3" style="width: 100%; height: 20px; border-bottom: 1px solid black; text-align: center">
-                      <span style="font-size: 20px; background-color: white; padding: 0 10px;">
-                        다음 계정으로 가입하기
-                      </span>
-                    </div>
-                    <!-- <p class="lead fw-normal mb-0 me-3 text-center">다음 계정으로 가입하기</p> -->
-                    <div class="d-flex align-items-center justify-content-center mb-4">
-                      <button type="button" class="btn btns btn-floating mx-1">
-                        <i class="bi bi-facebook"></i>
-                      </button>
-          
-                      <button type="button" class="btn btns btn-floating mx-1">
-                        <i class="bi bi-twitter"></i>
-                      </button>
-          
-                      <button type="button" class="btn btns btn-floating mx-1">
-                        <i class="bi bi-google"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-
-              </div>
-              <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-                <img src="{% static '밥사줘.png' %}"
-                  class="img-fluid" alt="Sample image">
-              </div>
-            </div>
-          </div>
+<div class="wrap wd668">
+  <div class="container mt-4 border border-3 border-dark rounded">
+    <div class="form_txtInput">
+      <div class="container d-flex justify-content-center">
+        <div class="col-md-3">
+          <img src="{% static '밥사줘.png' %}"
+            class="img-fluid" alt="Sample image">
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
+      <h2 class="sub_tit_txt m-0 container px-3 mt-3 text-center mb-3 fs-5">회원가입</h2>
+      <div class="join_form">
+        <table>
+          <colgroup>
+            <col width="30%"/>
+            <col width="auto"/>
+          </colgroup>
+          <form action="" method="POST">
+            {% csrf_token %}
+              <tbody>
+                  <tr>
+                    <th><span>아이디</span></th>
+                    <td><input type="text" placeholder="아이디를 입력해주세요" name="username"></td>
+                  </tr>
+                <tr>
+                  <th><span>비밀번호</span></th>
+                  <td><input type="password" placeholder="비밀번호를 입력해주세요" name="password1"></td>
+                </tr>
+                <tr>
+                  <th><span>비밀번호 확인</span></th>
+                  <td><input type="password" placeholder="비밀번호를 입력해주세요" name="password2"></td>
+                </tr>
+                <tr>
+                  <th><span>이메일</span></th>
+                  <td><input type="email" placeholder="예:food@food.com" name="email"></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="exform_txt"><span class="d-flex justify-content-start">표시는 필수적으로 입력해주셔야 가입이 가능합니다.</span></div>
+          </div><!-- join_form E  -->
+          <div class="agree_wrap m-0">
+            <div class="checkbox_wrap">
+              <input type="checkbox" id="news_letter" name="news_letter" class="agree_chk">
+              <label for="news_letter">[선택]뉴스레터 수신동의</label>
+            </div>
+            <div class="checkbox_wrap mar27 m-0">
+              <input type="checkbox" id="marketing" name="marketing" class="agree_chk">
+              <label for="marketing">[선택]마케팅 목적 개인정보 수집 및 이용에 대한 동의</label>
+              <ul class="explan_txt p-0">
+                <li><span class="red_txt">항목 : 성별, 생년월일</span></li>
+                <li>고객님께서는 위의 개인정보 및 회원정보 수정 등을 통해 추가로 수집하는 개인정보에<br/>
+                  대해 동의하지 않거나 개인정보를 기재하지 않음으로써 거부하실 수 있습니다.<br/>
+                  다만 이때 회원 대상 서비스가 제한될 수 있습니다.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="p-0 mt-2">
+            <button type="submit" id="form3Example4" class="form-control form-control-lg mb-3"
+              style="font-size: 18px;"name="password1">로그인</button>
+          </div>  
+        </div> <!-- form_txtInput E -->
+      </div><!-- content E-->
+    </form>
+    </div> <!-- container E -->
 {% endblock content %}

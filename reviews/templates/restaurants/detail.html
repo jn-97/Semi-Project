@@ -3,212 +3,212 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="{% static 'css/detail.css' %}">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-  {% bootstrap_css %}
-</head>
-<body>
-  <!-- image -->
-  <div class="d-flex justify-content-between">
-    <div>
-      {% if restaurant.image1 %}
-        <img src="{{ restaurant.image1.url }}" class="card-img-top">
-      {% else %}
-        <img src="https://dummyimage.com/900x1200/000000/c4c4c4" class="card-img-top">
-      {% endif %}
-    </div>
-    <div>
-      {% if restaurant.image2 %}
-        <img src="{{ restaurant.image2.url }}" class="card-img-top">
-      {% else %}
-        <img src="https://dummyimage.com/900x1200/000000/c4c4c4" class="card-img-top">
-      {% endif %}
-    </div>
-    <div>
-      {% if restaurant.image3 %}
-        <img src="{{ restaurant.image3.url }}" class="card-img-top">
-      {% else %}
-        <img src="https://dummyimage.com/900x1200/000000/c4c4c4" class="card-img-top">
-      {% endif %}
-    </div>
-    <div>
-      {% if restaurant.image4 %}
-        <img src="{{ restaurant.image4.url }}" class="card-img-top">
-      {% else %}
-        <img src="https://dummyimage.com/900x1200/000000/c4c4c4" class="card-img-top">
-      {% endif %}
-    </div>
-    <div>
-      {% if restaurant.image5 %}
-        <img src="{{ restaurant.image5.url }}" class="card-img-top">
-      {% else %}
-        <img src="https://dummyimage.com/900x1200/000000/c4c4c4" class="card-img-top">
-      {% endif %}
-    </div>
-  </div>
 
-  <!-- header -->
-  <div class="mt-5 container">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
+    {% bootstrap_css %}
+  </head>
+
+  <body>
+    <!-- image -->
     <div class="d-flex justify-content-between">
       <div>
-        <h2 class="mb-3">{{ restaurant.name }}</h2>
-        <p class="mb-1">RunningTime {{ restaurant.runtime }}</p>
-        <p class="mb-1">Closing {{ restaurant.closing }}</p>
-      </div>
-      <div class="text-center">
-      {% if request.user.is_authenticated %}
-        {% if request.user in restaurant.like_want_go.all %}
-          <a class="title_link" href="{% url 'restaurants:like' restaurant.pk %}">
-            <i style="color:red;" class="hart bi bi-heart-fill"></i>
-          </a>
+        {% if restaurant.image1 %}
+          <img src="{{ restaurant.image1.url }}" class="card-img-top">
         {% else %}
-          <a href="{% url 'restaurants:like' restaurant.pk %}">
-            <i style="color:red;" class="hart bi bi-heart"></i>
-          </a>
-          <p>좋아요</p>
+          <img src="https://dummyimage.com/900x1200/000000/c4c4c4" class="card-img-top">
         {% endif %}
-      {% endif %}
+      </div>
+      <div>
+        {% if restaurant.image2 %}
+          <img src="{{ restaurant.image2.url }}" class="card-img-top">
+        {% else %}
+          <img src="https://dummyimage.com/900x1200/000000/c4c4c4" class="card-img-top">
+        {% endif %}
+      </div>
+      <div>
+        {% if restaurant.image3 %}
+          <img src="{{ restaurant.image3.url }}" class="card-img-top">
+        {% else %}
+          <img src="https://dummyimage.com/900x1200/000000/c4c4c4" class="card-img-top">
+        {% endif %}
+      </div>
+      <div>
+        {% if restaurant.image4 %}
+          <img src="{{ restaurant.image4.url }}" class="card-img-top">
+        {% else %}
+          <img src="https://dummyimage.com/900x1200/000000/c4c4c4" class="card-img-top">
+        {% endif %}
+      </div>
+      <div>
+        {% if restaurant.image5 %}
+          <img src="{{ restaurant.image5.url }}" class="card-img-top">
+        {% else %}
+          <img src="https://dummyimage.com/900x1200/000000/c4c4c4" class="card-img-top">
+        {% endif %}
       </div>
     </div>
 
-  
-   <!-- 좋아요 / 조회수-->
-    <div class="mt-4 d-flex text-center" style="height:40px;">
-      <div style="margin-right: 10px;">
-        <i style="color:red; line-height: 40px; vertical-align: middle;" class="hart bi bi-heart-fill"></i>
-        <span style="line-height: 40px; vertical-align: middle;">{{ restaurant.want_go.count }}</span>
+    <!-- header -->
+    <div class="mt-5 container">
+      <div class="d-flex justify-content-between">
+        <div>
+          <h2 class="mb-3">{{ restaurant.name }}</h2>
+          <p class="mb-1">RunningTime
+            {{ restaurant.runtime }}</p>
+          <p class="mb-1">Closing
+            {{ restaurant.closing }}</p>
+        </div>
+        <div class="text-center">
+          {% if request.user.is_authenticated %}
+            {% if request.user in restaurant.like_want_go.all %}
+              <a class="title_link" href="{% url 'restaurants:like' restaurant.pk %}">
+                <i style="color:red;" class="hart bi bi-heart-fill"></i>
+              </a>
+            {% else %}
+              <a href="{% url 'restaurants:like' restaurant.pk %}">
+                <i style="color:red;" class="hart bi bi-heart"></i>
+              </a>
+              <p>좋아요</p>
+            {% endif %}
+          {% endif %}
+        </div>
       </div>
-      <div class="vertical-align: middle;">
-        <span style="line-height: 40px; vertical-align: middle;" class="material-symbols-outlined">visibility</span>
-        <span style="line-height: 40px; vertical-align: middle;">{{ restaurant.hits }}</span>
-      </div> 
-    </div>
-    
-    <!-- 댓글 -->
-    <div class="mt-5">
-      <h4>댓글 작성</h4>
-      {% if request.user.is_authenticated %}
-        <form action="{% url 'restaurants:comment_create' restaurant.pk %}" method="POST">
-          {% csrf_token %}
-          {% bootstrap_form form %}
-          <button class="float-end btn btn-outline-primary ">작성</button>
-        </form>
-      {% endif %}
 
-  </div>
-  <!-- 위도 경도 -->
-  <div id="map" style="width:500px;height:400px;"></div>
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f62f26e6ae37a63537ff0648ebc89d02"></script>
-  <script>
-    var container = document.getElementById('map');
-    var options = {
-      center: new kakao
-        .maps
-        .LatLng(),
-      level: 3
-    };
+      <!-- 좋아요 / 조회수-->
+      <div class="mt-4 d-flex text-center" style="height:40px;">
+        <div style="margin-right: 10px;">
+          <i style="color:red; line-height: 40px; vertical-align: middle;" class="hart bi bi-heart-fill"></i>
+          <span style="line-height: 40px; vertical-align: middle;">{{ restaurant.want_go.count }}</span>
+        </div>
+        <div class="vertical-align: middle;">
+          <span style="line-height: 40px; vertical-align: middle;" class="material-symbols-outlined">visibility</span>
+          <span style="line-height: 40px; vertical-align: middle;">{{ restaurant.hits }}</span>
+        </div>
+      </div>
 
-    var map = new kakao
-      .maps
-      .Map(container, options);
-  </script>
-  <!-- 댓글 -->
-  <div class="py-2">
-    {% if request.user.is_authenticated %}
+      <!-- 댓글 -->
+      <div class="mt-5">
+        <h4>댓글 작성</h4>
+        {% if request.user.is_authenticated %}
+          <form action="{% url 'restaurants:comment_create' restaurant.pk %}" method="POST">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <button class="float-end btn btn-outline-primary ">작성</button>
+          </form>
+        {% endif %}
 
+      </div>
+      <!-- 위도 경도 -->
+      <div id="map" style="width:500px;height:400px;"></div>
+      <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f62f26e6ae37a63537ff0648ebc89d02"></script>
+      <script>
+        var container = document.getElementById('map');
+        var options = {
+          center: new kakao
+            .maps
+            .LatLng(),
+          level: 3
+        };
 
-      <div class=" py-5">
-        <h6 class="mt-3">
-          댓글 수 :
-          {{ restaurant.comment_set.count }}</h6>
-        <hr>
+        var map = new kakao
+          .maps
+          .Map(container, options);
+      </script>
+      <!-- 댓글 -->
+      <div class="py-2">
+        {% if request.user.is_authenticated %}
 
-        {% for comment in comments %}
-          <div>
+          <div class=" py-5">
+            <h6 class="mt-3">
+              댓글 수 :
+              {{ restaurant.comment_set.count }}</h6>
+            <hr>
+          {% endif %}
+          {% for comment in comments %}
             <div>
-              <p class=" fw-bold fs-5 m-0">{{ comment.user.username }}
-                <a class="title_link" href="{% url 'accounts:detail' comment.user.pk%}">
-                  <i style="color: black;" class="bi bi-person-circle px-2"></i>
-                </a>
-              </p>
-              <p class="fs-6">{{ comment.created_at|date:"SHORT_DATETIME_FORMAT" }}</p>
-              <p class="m-0 fs-6">{{ comment.content }}</p>
-
               <div>
-                <form action="{% url 'restaurants:comment_delete' restaurant.pk comment.pk %}" method="POST">
-                  {% csrf_token %}
-                  <div>
-                    {% if comment.grade == 1 %}
-                      <p>
+                <p class=" fw-bold fs-5 m-0">{{ comment.user.username }}
+                  <a class="title_link" href="{% url 'accounts:detail' comment.user.pk%}">
+                    <i style="color: black;" class="bi bi-person-circle px-2"></i>
+                  </a>
+                </p>
+                <p class="fs-6">{{ comment.created_at|date:"SHORT_DATETIME_FORMAT" }}</p>
+                <p class="m-0 fs-6">{{ comment.content }}</p>
+
+                <div>
+                  <form action="{% url 'restaurants:comment_delete' restaurant.pk comment.pk %}" method="POST">
+                    {% csrf_token %}
+                    <div>
+                      {% if comment.grade == 1 %}
+                        <p>
+                          <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
+                          <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
+                          <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
+                          <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
+                          <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
+                        </p>
+                      {% elif comment.grade == 2 %}
+                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
                         <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
                         <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
                         <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
                         <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
+                      {% elif comment.grade == 3 %}
+                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
+                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
+                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
                         <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
+                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
+                      {% elif comment.grade == 4 %}
+                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
+                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
+                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
+                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
+                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
+                      {% elif comment.grade == 5 %}
+                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
+                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
+                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
+                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
+                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
                       </p>
-                    {% elif comment.grade == 2 %}
-                      <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
-                      <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
-                      <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
-                      <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
-                      <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
-                    {% elif comment.grade == 3 %}
-                      <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
-                      <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
-                      <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
-                      <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
-                      <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
-                    {% elif comment.grade == 4 %}
-                      <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
-                      <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
-                      <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
-                      <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
-                      <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
-                    {% elif comment.grade == 5 %}
-                      <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
-                      <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
-                      <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
-                      <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
-                      <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
-                    </p>
-                  {% endif %}
-                </div>
-                {% if request.user == comment.user %}
-                  <button class="btn btn-link p-0" style="color: red; text-decoration: none;">삭제</button>
-                </form>
-              {% endif %}
+                    {% endif %}
+                  </div>
+                  {% if request.user == comment.user %}
+                    <button class="btn btn-link p-0" style="color: red; text-decoration: none;">삭제</button>
+                  </form>
+                {% endif %}
+              </div>
             </div>
-          </div>
-          <hr>
-          {% empty %}
-          <p>댓글이 없습니다.</p>
-        {% endfor %}
+            <hr>
+            {% empty %}
+            <p>댓글이 없습니다.</p>
+          {% endfor %}
+        </div>
+      </div>
+      <div>
+        <a class="float-end btn btn-dark m-1" href="{% url 'restaurants:index' %}">목록</a>
+        {% if request.user == restaurant.user %}
+          <a class="float-end btn btn-primary m-1" href="{% url 'restaurants:update' restaurant.pk %}">
+            수정
+          </a>
+          <a class="float-end btn btn-danger m-1" href="{% url 'restaurants:delete' restaurant.pk %}">
+            삭제
+          </a>
+        {% endif %}
       </div>
     </div>
-    <div>
-      <a class="float-end btn btn-dark m-1" href="{% url 'restaurants:index' %}">목록</a>
-      {% if request.user == restaurant.user %}
-        <a class="float-end btn btn-primary m-1" href="{% url 'restaurants:update' restaurant.pk %}">
-          수정
-        </a>
-        <a class="float-end btn btn-danger m-1" href="{% url 'restaurants:delete' restaurant.pk %}">
-          삭제
-        </a>
-      {% endif %}
-    </div>
   </div>
-</div>
 
 </body>
 
 {% bootstrap_javascript %}
+
 </html>
-
-{% endblock %}
-

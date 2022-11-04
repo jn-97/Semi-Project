@@ -8,7 +8,7 @@
   <div class="container mt-4 border border-3 border-dark rounded">
     <div class="form_txtInput">
       <div class="container d-flex justify-content-center">
-        <div class="col-md-3">
+        <div class="col-md-3 mb-3">
           <img src="{% static '밥사줘.png' %}"
             class="img-fluid" alt="Sample image">
         </div>
@@ -23,6 +23,14 @@
           <form action="" method="POST">
             {% csrf_token %}
               <tbody>
+                <tr>
+                  <th><span>성</span></th>
+                  <td><input type="text" placeholder="" name="first_name"></td>
+                </tr>
+                <tr>
+                  <th><span>이름</span></th>
+                  <td><input type="text" placeholder="" name="last_name"></td>
+                </tr>
                   <tr>
                     <th><span>아이디</span></th>
                     <td><input type="text" placeholder="아이디를 입력해주세요" name="username"></td>

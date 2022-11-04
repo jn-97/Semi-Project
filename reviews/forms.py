@@ -16,8 +16,6 @@ class RestaurantForm(forms.ModelForm):
             'image3': '사진3',
             'image4': '사진4',
             'image5': '사진5',
-            'latitude': '위도',
-            'longitude': '경도',
         }
 
     def __init__(self, *args, **kwargs):

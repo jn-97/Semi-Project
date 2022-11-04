@@ -58,8 +58,7 @@ class Restaurant(models.Model):
     want_go = models.ManyToManyField(
         settings.AUTH_USER_MODEL, related_name="liked_user"
     )
-    latitude = models.FloatField()
-    longitude = models.FloatField()
+    
 
 
 class Comment(models.Model):

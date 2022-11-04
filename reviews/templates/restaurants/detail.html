@@ -191,6 +191,7 @@
         {% endfor %}
       </div>
     </div>
+    {% endif %}
     <div>
       <a class="float-end btn btn-dark m-1" href="{% url 'restaurants:index' %}">목록</a>
       {% if request.user == restaurant.user %}
@@ -210,5 +211,4 @@
 {% bootstrap_javascript %}
 </html>
 
-{% endblock %}
 

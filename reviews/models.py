@@ -19,7 +19,35 @@ class Restaurant(models.Model):
     sorted = models.IntegerField(choices=SORT, default=None)
     runtime = models.CharField(max_length=100)
     closing = models.CharField(max_length=100)
-    image = ProcessedImageField(
+    image1 = ProcessedImageField(
+        upload_to = 'images/',
+        blank = True,
+        processors=[ResizeToFill(700, 700)],
+        format='JPEG',
+        options={"quality": 80},
+    )
+    image2 = ProcessedImageField(
+        upload_to = 'images/',
+        blank = True,
+        processors=[ResizeToFill(700, 700)],
+        format='JPEG',
+        options={"quality": 80},
+    )
+    image3 = ProcessedImageField(
+        upload_to = 'images/',
+        blank = True,
+        processors=[ResizeToFill(700, 700)],
+        format='JPEG',
+        options={"quality": 80},
+    )
+    image4 = ProcessedImageField(
+        upload_to = 'images/',
+        blank = True,
+        processors=[ResizeToFill(700, 700)],
+        format='JPEG',
+        options={"quality": 80},
+    )
+    image5 = ProcessedImageField(
         upload_to = 'images/',
         blank = True,
         processors=[ResizeToFill(700, 700)],

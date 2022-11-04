@@ -16,9 +16,11 @@
     </div>
     <!-- 이미지 -->
     {% if restaurant.image %}
-      <img src="{{ restaurant.image.url }}" class="card-img-top">
+      <div class="p-5">
+        <img src="{{ restaurant.image.url }}" class="card-img-top" with='500' height='500'>
+      </div>
     {% else %}
-      <img src="https://dummyimage.com/900x1200/000000/c4c4c4" class="card-img-top">
+      <img src="https://dummyimage.com/900x900/000000/c4c4c4" class="card-img-top" with='400' height='400'>
     {% endif %}
     <p>매장 영업시간 |
       {{ restaurant.runtime }}</p>
@@ -39,6 +41,22 @@
       {% endif %}
     </div>
   </div>
+  <!-- 위도 경도 -->
+  <div id="map" style="width:500px;height:400px;"></div>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f62f26e6ae37a63537ff0648ebc89d02"></script>
+  <script>
+    var container = document.getElementById('map');
+    var options = {
+      center: new kakao
+        .maps
+        .LatLng(),
+      level: 3
+    };
+
+    var map = new kakao
+      .maps
+      .Map(container, options);
+  </script>
   <!-- 댓글 -->
   <div class="py-2">
     {% if request.user.is_authenticated %}

@@ -22,7 +22,7 @@ class Restaurant(models.Model):
     image = ProcessedImageField(
         upload_to = 'images/',
         blank = True,
-        processors=[ResizeToFill(700, 700)],
+        processors=[ResizeToFill(400, 300)],
         format='JPEG',
         options={"quality": 80},
     )
@@ -30,6 +30,8 @@ class Restaurant(models.Model):
     want_go = models.ManyToManyField(
         settings.AUTH_USER_MODEL, related_name="liked_user"
     )
+    latitude = models.FloatField()
+    longitude = models.FloatField()
 
 
 class Comment(models.Model):

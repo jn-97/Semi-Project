@@ -205,10 +205,19 @@
         {% endif %}
       </div>
     </div>
+    {% endif %}
+    <div>
+      <a class="float-end btn btn-dark m-1" href="{% url 'restaurants:index' %}">목록</a>
+      {% if request.user == restaurant.user %}
+        <a class="float-end btn btn-primary m-1" href="{% url 'restaurants:update' restaurant.pk %}">
+          수정
+        </a>
+        <a class="float-end btn btn-danger m-1" href="{% url 'restaurants:delete' restaurant.pk %}">
+          삭제
+        </a>
+      {% endif %}
+    </div>
   </div>
-
 </body>
-
 {% bootstrap_javascript %}
-
 </html>

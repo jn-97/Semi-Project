@@ -60,6 +60,7 @@ class Restaurant(models.Model):
     )
 
 
+
 class Comment(models.Model):
     RATING = [
         (1, "★"),

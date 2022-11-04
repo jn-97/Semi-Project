@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
   <head>
     <meta charset="UTF-8">
@@ -86,7 +86,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/css/swiper.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/js/swiper.min.js"></script>
   <div class="container">
-    <div class="row mb-3 mt-5 p-0">
+    <div class="row mb-3 mt-1 p-0">
       <div class="col-md-12 p-0">
         <h3>당신을 위한 이 지역 HOT 매장추천</h3>
       </div>
@@ -98,10 +98,10 @@
           <div class="swiper-slide">
             <div class="row">
               {% for restaurant in restaurants %}
-                <div class="col-md-3">
+                <div class="col-md-3 mb-5">
                   <div class="card">
                     {% if restaurant.image %}
-                      <img src="{{ restaurant.image.url }}" class="card-img-top">
+                      <a href="{% url 'restaurants:detail' restaurant.pk %}"><img src="{{ restaurant.image.url }}" class="card-img-top"></a>
                     {% else %}
                       <img src="https://dummyimage.com/900x1200/000000/c4c4c4" class="card-img-top">
                     {% endif %}
@@ -115,7 +115,6 @@
                         조회수 :
                         {{ restaurant.hits }}</small>
                     </div>
-                    <button type="button" class="btn btn-outline-danger btn-block btn-sm">구매하기</button>
                   </div>
                 </div>
               {% endfor %}
@@ -137,14 +136,16 @@
         <div class="card mb-3 bg-transparent border-0" style="max-width: 400px;">
           <div class="row g-0">
             <div class="col-md-6">
-              <img src="./images/표지.jpeg" class="img-fluid" style="height: 188px;" alt="...">
+              <img src="https://img.siksinhot.com/seeon/1667353298010512.jpg?w=440&h=440" class="img-fluid" style="height: 188px;" alt="...">
             </div>
             <div class="col-md-6">
               <div class="card-body p-0 ms-3">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">bit</p>
+                <h5 class="card-title fw-bold">지브리파크 부럽지 않은 국내 지브리 갬성 카페 5</h5>
+                <p class="card-text">'지브리 애니메이션'을 한 번이라도 봤다면...</p>
                 <p class="card-text">
-                  <small class="text-muted">Last updated 3 mins ago</small>
+                  <img class="rounded-circle" src="https://img.siksinhot.com/seeon/1447234040666036.png?w=49&h=48&c=Y" alt="">
+                  <small class="text-muted">Edit by
+                    <span class="text-success">맛박사</span></small>
                 </p>
               </div>
             </div>
@@ -153,14 +154,16 @@
         <div class="card mb-3 bg-transparent border-0" style="max-width: 400px;">
           <div class="row g-0">
             <div class="col-md-6">
-              <img src="./images/표지.jpeg" class="img-fluid" style="height: 188px;" alt="...">
+              <img src="https://img.siksinhot.com/seeon/1659665259107479.jpg?w=440&h=440" class="img-fluid" style="height: 188px;" alt="...">
             </div>
             <div class="col-md-6">
               <div class="card-body p-0 ms-3">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <h5 class="card-title fw-bold">발 담그고 먹는 백숙집! 전국 계곡 맛집 5곳</h5>
+                <p class="card-text">오늘은 휴가철 찾기 좋은 계곡 맛집 5곳을 소개합니다.</p>
                 <p class="card-text">
-                  <small class="text-muted">Last updated 3 mins ago</small>
+                  <img class="rounded-circle" src="https://img.siksinhot.com/seeon/1447234040666036.png?w=49&h=48&c=Y" alt="">
+                  <small class="text-muted">Edit by
+                    <span class="text-success">맛박사</span></small>
                 </p>
               </div>
             </div>
@@ -169,14 +172,16 @@
         <div class="card mb-3 bg-transparent border-0" style="max-width: 400px;">
           <div class="row g-0">
             <div class="col-md-6">
-              <img src="./images/표지.jpeg" class="img-fluid" style="height: 188px;" alt="...">
+              <img src="https://img.siksinhot.com/seeon/1647589095128124.jpg?w=440&h=440" class="img-fluid" style="height: 188px;" alt="...">
             </div>
             <div class="col-md-6">
               <div class="card-body p-0 ms-3">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <h5 class="card-title fw-bold">업무추진비가 알려주는 서귀포 공무원 맛집 12곳</h5>
+                <p class="card-text">3개월간의 업무추진비 자료를 분석하여...</p>
                 <p class="card-text">
-                  <small class="text-muted">Last updated 3 mins ago</small>
+                  <img class="rounded-circle" src="https://img.siksinhot.com/seeon/1447234040666036.png?w=49&h=48&c=Y" alt="">
+                  <small class="text-muted">Edit by
+                    <span class="text-success">맛박사</span></small>
                 </p>
               </div>
             </div>
@@ -192,116 +197,104 @@
     <div class="row row-cols-1 row-cols-md-4 g-5 blogBox moreBox">
       <div class="col">
         <div class="card">
-          <img src="./images/표지.jpeg" class="card-img-top" alt="...">
+          <img src="https://img.siksinhot.com/seeon/1667529803099552.jpg" width='286' height='286' class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <h5 class="card-title text-center fw-bold">얼큰한 국물과 탱글한 식감<br>서울 알탕 맛집 BEST 5</h5>
           </div>
         </div>
       </div>
       <div class="col blogBox moreBox">
         <div class="card">
-          <img src="./images/표지.jpeg" class="card-img-top" alt="...">
+          <img src="https://img.siksinhot.com/seeon/1667357675626545.jpg" width='286' height='286' class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <h5 class="card-title text-center fw-bold">육집 팡팡 터지는<br>수제버거 맛집 BEST 5</h5>
           </div>
         </div>
       </div>
       <div class="col blogBox moreBox">
         <div class="card">
-          <img src="./images/표지.jpeg" class="card-img-top" alt="...">
+          <img src="https://img.siksinhot.com/seeon/1667353298010512.jpg" width='286' height='286' class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+            <h5 class="card-title text-center fw-bold">지브리파크 부럽지 않은<br>국내 지브리 갬성 카페 5</h5>
           </div>
         </div>
       </div>
       <div class="col blogBox moreBox">
         <div class="card">
-          <img src="./images/표지.jpeg" class="card-img-top" alt="...">
+          <img src="https://img.siksinhot.com/seeon/1667182070877473.jpg" width='286' height='286' class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+            <h5 class="card-title text-center fw-bold">대한민국 백년가게<br>대구맛집 BEST 5</h5>
           </div>
         </div>
       </div>
       <div class="col blogBox moreBox" style="display: none;">
         <div class="card">
-          <img src="./images/표지.jpeg" class="card-img-top" alt="...">
+          <img src="https://img.siksinhot.com/seeon/1666923230933392.jpg" width='286' height='286' class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+            <h5 class="card-title text-center fw-bold">다시 활기를 되찾는,<br>서울 명동 맛집 6</h5>
           </div>
         </div>
       </div>
       <div class="col blogBox moreBox" style="display: none;">
         <div class="card">
-          <img src="./images/표지.jpeg" class="card-img-top" alt="...">
+          <img src="https://img.siksinhot.com/seeon/1666839560605358.jpg" width='286' height='286' class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+            <h5 class="card-title text-center fw-bold">한입 물면 육즙 가득<br>수제 만두 맛집 BEST 5</h5>
           </div>
         </div>
       </div>
       <div class="col blogBox moreBox" style="display: none;">
         <div class="card">
-          <img src="./images/표지.jpeg" class="card-img-top" alt="...">
+          <img src="https://img.siksinhot.com/seeon/1666674243869320.jpg" width='286' height='286' class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+            <h5 class="card-title text-center fw-bold">맛집탐방하러 쇼핑몰가요~<br>서울 쇼핑스팟맛집 6</h5>
           </div>
         </div>
       </div>
       <div class="col blogBox moreBox" style="display: none;">
         <div class="card">
-          <img src="./images/표지.jpeg" class="card-img-top" alt="...">
+          <img src="https://img.siksinhot.com/seeon/1666577000795287.jpg" width='286' height='286' class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+            <h5 class="card-title text-center fw-bold">가슴을 울리는 재즈의 선율<br>서울 재즈바 BEST 5</h5>
           </div>
         </div>
       </div>
       <div class="col blogBox moreBox" style="display: none;">
         <div class="card">
-          <img src="./images/표지.jpeg" class="card-img-top" alt="...">
+          <img src="https://img.siksinhot.com/seeon/1666333974177273.jpg" width='286' height='286' class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+            <h5 class="card-title text-center fw-bold">태양과 낭만의 파라다이스!<br>신상 타이 맛집 BEST</h5>
           </div>
         </div>
       </div>
       <div class="col blogBox moreBox" style="display: none;">
         <div class="card">
-          <img src="./images/표지.jpeg" class="card-img-top" alt="...">
+          <img src="https://img.siksinhot.com/seeon/1666069433158249.jpeg" width='286' height='286' class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+            <h5 class="card-title text-center fw-bold">대한민국 백년가게<br>전남맛집 BEST 5</h5>
           </div>
         </div>
       </div>
       <div class="col blogBox moreBox" style="display: none;">
         <div class="card">
-          <img src="./images/표지.jpeg" class="card-img-top" alt="...">
+          <img src="https://img.siksinhot.com/seeon/1665971148836216.jpg" width='286' height='286' class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+            <h5 class="card-title text-center fw-bold">고즈넉한 힐링 스팟!<br>서순라길 맛집 BEST 5</h5>
           </div>
         </div>
       </div>
       <div class="col blogBox moreBox" style="display: none;">
         <div class="card">
-          <img src="./images/표지.jpeg" class="card-img-top" alt="...">
+          <img src="https://img.siksinhot.com/seeon/1665623410765184.jpg" width='286' height='286' class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+            <h5 class="card-title text-center fw-bold">화려하고 강렬한 태양의 맛<br>멕시칸 타코 맛집 5</h5>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="mb-5 container" id="loadMore">
-    <a href="#" style="text-decoration:none;">더보기</a>
+  <div class="my-5 container" id="loadMore">
+    <a href="#" style="text-decoration:none;">더보기 ⬇️</a>
   </div>
   <!--footer-->
   <hr>

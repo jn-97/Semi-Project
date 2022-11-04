@@ -65,20 +65,6 @@
           <p class="mb-1">Closing
             {{ restaurant.closing }}</p>
         </div>
-        <div class="text-center">
-          {% if request.user.is_authenticated %}
-            {% if request.user in restaurant.like_want_go.all %}
-              <a class="title_link" href="{% url 'restaurants:like' restaurant.pk %}">
-                <i style="color:red;" class="hart bi bi-heart-fill"></i>
-              </a>
-            {% else %}
-              <a href="{% url 'restaurants:like' restaurant.pk %}">
-                <i style="color:red;" class="hart bi bi-heart"></i>
-              </a>
-              <p>좋아요</p>
-            {% endif %}
-          {% endif %}
-        </div>
       </div>
 
       <!-- 좋아요 / 조회수-->
@@ -92,9 +78,22 @@
           <span style="line-height: 40px; vertical-align: middle;">{{ restaurant.hits }}</span>
         </div>
       </div>
-
+      <div>
+        {% if request.user.is_authenticated %}
+          {% if request.user in restaurant.like_want_go.all %}
+            <a class="title_link" href="{% url 'restaurants:like' restaurant.pk %}">
+              <i style="color:red;" class="hart bi bi-heart-fill"></i>
+            </a>
+          {% else %}
+            <a href="{% url 'restaurants:like' restaurant.pk %}">
+              <i style="color:red;" class="hart bi bi-heart"></i>
+            </a>
+            <p>좋아요</p>
+          {% endif %}
+        {% endif %}
+      </div>
       <!-- 댓글 -->
-      <div class="mt-5">
+      <div class="mt-2">
         <h4>댓글 작성</h4>
         {% if request.user.is_authenticated %}
           <form action="{% url 'restaurants:comment_create' restaurant.pk %}" method="POST">
@@ -148,36 +147,36 @@
                     <div>
                       {% if comment.grade == 1 %}
                         <p>
-                          <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
-                          <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
-                          <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
-                          <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
-                          <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
+                          <i>⭐️</i>
+                          <i style="color:rgb(245, 220, 10);" class="hart bi bi-star"></i>
+                          <i style="color:rgb(245, 220, 10);" class="hart bi bi-star"></i>
+                          <i style="color:rgb(245, 220, 10);" class="hart bi bi-star"></i>
+                          <i style="color:rgb(245, 220, 10);" class="hart bi bi-star"></i>
                         </p>
                       {% elif comment.grade == 2 %}
-                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
-                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
-                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
-                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
-                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
+                        <i>⭐️</i>
+                        <i>⭐️</i>
+                        <i style="color:rgb(245, 220, 10);" class="hart bi bi-star"></i>
+                        <i style="color:rgb(245, 220, 10);" class="hart bi bi-star"></i>
+                        <i style="color:rgb(245, 220, 10);" class="hart bi bi-star"></i>
                       {% elif comment.grade == 3 %}
-                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
-                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
-                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
-                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
-                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
+                        <i>⭐️</i>
+                        <i>⭐️</i>
+                        <i>⭐️</i>
+                        <i style="color:rgb(245, 220, 10);" class="hart bi bi-star"></i>
+                        <i style="color:rgb(245, 220, 10);" class="hart bi bi-star"></i>
                       {% elif comment.grade == 4 %}
-                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
-                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
-                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
-                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
-                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star"></i>
+                        <i>⭐️</i>
+                        <i>⭐️</i>
+                        <i>⭐️</i>
+                        <i>⭐️</i>
+                        <i style="color:rgb(245, 220, 10);" class="hart bi bi-star"></i>
                       {% elif comment.grade == 5 %}
-                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
-                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
-                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
-                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
-                        <i style="color:rgb(255, 86, 86);" class="hart bi bi-star-fill"></i>
+                        <i>⭐️</i>
+                        <i>⭐️</i>
+                        <i>⭐️</i>
+                        <i>⭐️</i>
+                        <i>⭐️</i>
                       </p>
                     {% endif %}
                   </div>

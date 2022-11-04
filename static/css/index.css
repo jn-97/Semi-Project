@@ -1,6 +1,6 @@
 
 .a{
-  background-color: url("/static/배경화면.jpeg");
+  background-image: url("/static/배경화면.jpeg");
   width:100%; 
   height:580px;
 }

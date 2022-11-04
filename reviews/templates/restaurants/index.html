@@ -109,8 +109,8 @@
               {% for restaurant in restaurants %}
                 <div class="col-md-3 mb-5">
                   <div class="card">
-                    {% if restaurant.image %}
-                      <a href="{% url 'restaurants:detail' restaurant.pk %}"><img src="{{ restaurant.image.url }}" class="card-img-top"></a>
+                    {% if restaurant.image1 %}
+                      <a href="{% url 'restaurants:detail' restaurant.pk %}"><img src="{{ restaurant.image1.url }}" class="card-img-top"></a>
                     {% else %}
                       <img src="https://dummyimage.com/900x1200/000000/c4c4c4" class="card-img-top">
                     {% endif %}

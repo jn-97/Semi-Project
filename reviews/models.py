@@ -63,11 +63,11 @@ class Restaurant(models.Model):
 
 class Comment(models.Model):
     RATING = [
-        (1, "★"),
-        (2, "★★"),
-        (3, "★★★"),
-        (4, "★★★★"),
-        (5, "★★★★★"),
+        (1, "⭐️"),
+        (2, "⭐️⭐️"),
+        (3, "⭐️⭐️⭐️"),
+        (4, "⭐️⭐️⭐️⭐️"),
+        (5, "⭐️⭐️⭐️⭐️⭐️"),
     ]
     grade = models.IntegerField(choices=RATING, default=None)
     content = models.TextField(max_length=300, blank=False)

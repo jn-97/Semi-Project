@@ -4,13 +4,18 @@ from .models import Restaurant, Comment
 class RestaurantForm(forms.ModelForm):
     class Meta:
         model = Restaurant
-        fields = ['sorted', 'name', 'runtime', 'closing', 'image','latitude', 'longitude']
+
+        fields = ['sorted', 'name', 'runtime', 'closing', 'image1', 'image2', 'image3', 'image4', 'image5']
         labels = {
             'sorted' : '분류',
             'name': '매장이름',
             'runtime': '영업시간',
             'closing': '휴무일',
-            'image': '사진',
+            'image1': '사진1',
+            'image2': '사진2',
+            'image3': '사진3',
+            'image4': '사진4',
+            'image5': '사진5',
             'latitude': '위도',
             'longitude': '경도',
         }

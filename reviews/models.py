@@ -10,47 +10,46 @@ from imagekit.processors import ResizeToFill
 class Restaurant(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     name = models.CharField(max_length=20)
-    SORT = [
-        (1, "양식"),
-        (2, "중식"),
-        (3, "한식"),
-        (4, "일식"),
-    ]
-    sorted = models.IntegerField(choices=SORT, default=None)
+    sorted = models.CharField(max_length=20)
     runtime = models.CharField(max_length=100)
     closing = models.CharField(max_length=100)
+    region = models.CharField(max_length=20)
+    introduce = models.CharField(max_length=1000)
+    number = models.CharField(max_length=20)
+    address = models.CharField(max_length=100)
+
     image1 = ProcessedImageField(
         upload_to = 'images/',
         blank = True,
-        processors=[ResizeToFill(700, 700)],
+        processors=[ResizeToFill(251, 251)],
         format='JPEG',
         options={"quality": 80},
     )
     image2 = ProcessedImageField(
         upload_to = 'images/',
         blank = True,
-        processors=[ResizeToFill(700, 700)],
+        processors=[ResizeToFill(251, 251)],
         format='JPEG',
         options={"quality": 80},
     )
     image3 = ProcessedImageField(
         upload_to = 'images/',
         blank = True,
-        processors=[ResizeToFill(700, 700)],
+        processors=[ResizeToFill(251, 251)],
         format='JPEG',
         options={"quality": 80},
     )
     image4 = ProcessedImageField(
         upload_to = 'images/',
         blank = True,
-        processors=[ResizeToFill(700, 700)],
+        processors=[ResizeToFill(251, 251)],
         format='JPEG',
         options={"quality": 80},
     )
     image5 = ProcessedImageField(
         upload_to = 'images/',
         blank = True,
-        processors=[ResizeToFill(400, 300)],
+        processors=[ResizeToFill(251, 251)],
         format='JPEG',
         options={"quality": 80},
     )

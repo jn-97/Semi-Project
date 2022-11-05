@@ -15,42 +15,43 @@
     {% bootstrap_css %}
   </head>
 
-  <body>
+  <body class="container">
     <!-- image -->
+    <h2 class="my-5">{{ restaurant.name }}</h2>
     <div class="d-flex justify-content-between">
       <div>
         {% if restaurant.image1 %}
-          <img src="{{ restaurant.image1.url }}" class="card-img-top">
+          <img src="{{ restaurant.image1.url }}" class="card-img-top" weight='251' height='251'>
         {% else %}
-          <img src="https://dummyimage.com/900x1200/000000/c4c4c4" class="card-img-top">
+          <img src="https://dummyimage.com/251x251/000000/c4c4c4" class="card-img-top" weight='251' height='251'>
         {% endif %}
       </div>
       <div>
         {% if restaurant.image2 %}
-          <img src="{{ restaurant.image2.url }}" class="card-img-top">
+          <img src="{{ restaurant.image2.url }}" class="card-img-top" weight='251' height='251'>
         {% else %}
-          <img src="https://dummyimage.com/900x1200/000000/c4c4c4" class="card-img-top">
+          <img src="https://dummyimage.com/251x251/000000/c4c4c4" class="card-img-top" weight='251' height='251'>
         {% endif %}
       </div>
       <div>
         {% if restaurant.image3 %}
-          <img src="{{ restaurant.image3.url }}" class="card-img-top">
+          <img src="{{ restaurant.image3.url }}" class="card-img-top" weight='251' height='251'>
         {% else %}
-          <img src="https://dummyimage.com/900x1200/000000/c4c4c4" class="card-img-top">
+          <img src="https://dummyimage.com/251x251/000000/c4c4c4" class="card-img-top" weight='251' height='251'>
         {% endif %}
       </div>
       <div>
         {% if restaurant.image4 %}
-          <img src="{{ restaurant.image4.url }}" class="card-img-top">
+          <img src="{{ restaurant.image4.url }}" class="card-img-top" weight='251' height='251'>
         {% else %}
-          <img src="https://dummyimage.com/900x1200/000000/c4c4c4" class="card-img-top">
+          <img src="https://dummyimage.com/251x251/000000/c4c4c4" class="card-img-top" weight='251' height='251'>
         {% endif %}
       </div>
       <div>
         {% if restaurant.image5 %}
-          <img src="{{ restaurant.image5.url }}" class="card-img-top">
+          <img src="{{ restaurant.image5.url }}" class="card-img-top" weight='251' height='251'>
         {% else %}
-          <img src="https://dummyimage.com/900x1200/000000/c4c4c4" class="card-img-top">
+          <img src="https://dummyimage.com/251x251/000000/c4c4c4" class="card-img-top" weight='251' height='251'>
         {% endif %}
       </div>
     </div>
@@ -59,11 +60,20 @@
     <div class="mt-5 container">
       <div class="d-flex justify-content-between">
         <div>
-          <h2 class="mb-3">{{ restaurant.name }}</h2>
-          <p class="mb-1">RunningTime
-            {{ restaurant.runtime }}</p>
-          <p class="mb-1">Closing
-            {{ restaurant.closing }}</p>
+          <h5 class="fw-bold mb-0">지역</h5>
+          <p>{{ restaurant.region }}</p>
+          <h5 class="fw-bold mb-0">업종</h5>
+          <p>{{ restaurant.sorted }}</p>
+          <h5 class="fw-bold mb-0">매장소개</h5>
+          <p>{{ restaurant.introduce }}</p>
+          <h5 class="fw-bold mb-0">전화번호</h5>
+          <p>{{ restaurant.number }}</p>
+          <h5 class="fw-bold mb-0">주소</h5>
+          <p>{{ restaurant.address }}</p>
+          <h5 class="fw-bold mb-0">영업시간</h5>
+          <p>{{ restaurant.runtime }}</p>
+          <h5 class="fw-bold mb-0">휴무일</h5>
+          <p>{{ restaurant.closing }}</p>
         </div>
       </div>
 
@@ -104,22 +114,6 @@
         {% endif %}
 
       </div>
-      <!-- 위도 경도 -->
-      <div id="map" style="width:500px;height:400px;"></div>
-      <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f62f26e6ae37a63537ff0648ebc89d02"></script>
-      <script>
-        var container = document.getElementById('map');
-        var options = {
-          center: new kakao
-            .maps
-            .LatLng(),
-          level: 3
-        };
-
-        var map = new kakao
-          .maps
-          .Map(container, options);
-      </script>
       <!-- 댓글 -->
       <div class="py-2">
         {% if request.user.is_authenticated %}

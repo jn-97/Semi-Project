@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from .models import Restaurant, Comment
 from .forms import RestaurantForm, CommentForm
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required,permission_required
 from django.db.models import Count, Avg
 
 def index(request):
@@ -13,6 +13,7 @@ def index(request):
     }
     return render(request, "restaurants/index.html", context)
 
+@permission_required('reviews.create', raise_exception=True)
 @login_required
 def create(request):
     if request.method == 'POST':

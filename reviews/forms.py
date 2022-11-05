@@ -5,10 +5,14 @@ class RestaurantForm(forms.ModelForm):
     class Meta:
         model = Restaurant
 
-        fields = ['sorted', 'name', 'runtime', 'closing', 'image1', 'image2', 'image3', 'image4', 'image5']
+        fields = ['sorted','region','name','introduce','number','address', 'runtime', 'closing', 'image1', 'image2', 'image3', 'image4', 'image5']
         labels = {
-            'sorted' : '분류',
+            'sorted' : '한식, 중식, 양식, 일식',
+            'region' : '지역',
             'name': '매장이름',
+            'introduce': '매장소개',
+            'number': '전화번호',
+            'address': '주소',
             'runtime': '영업시간',
             'closing': '휴무일',
             'image1': '사진1',

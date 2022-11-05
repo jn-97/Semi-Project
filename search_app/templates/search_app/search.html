@@ -1,0 +1,45 @@
+{% extends 'base1.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+
+  <div>
+    <div class="container">
+      <p class="text-center mt-3">
+        <b>"{{ query }}" 맛집 검색결과</b>
+      </p>
+      <div class="row mx-auto">
+        {% for restaurant in restaurants %}
+          <div class="col-md-3 mb-4 mt-4">
+            <div class="card" style="min-width: 18rem;">
+              <a href="{{ restaurant.get_url }}"><img src="{{ restaurant.image1.url }}" class="card-img-top" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a class="title_link text-decoration-none" href="{% url 'restaurants:detail' restaurant.pk %}">{{ restaurant.name }}</a>
+                </h4>
+                <p class="mt-3">{{ restaurant.runtime }}</p>
+                <small class="mb-0">{{ restaurant.closing }}</small>
+              </div>
+            </div>
+          </div>
+          {% empty %}
+          <div class="row mx-auto">
+            <p class="text-center ">0개의 결과를 찾았습니다.</p>
+          </div>
+          <a class="text-center text-decoration-none" href="{% url 'restaurants:index'%}">홈으로</a>
+        {% endfor %}
+      </div>
+    </div>
+    <!--footer-->
+    <hr>
+    <div>
+      <footer class="text-center mt-5">
+        Django-project by 이호빈,김지연,이상백, 이은진
+      </footer>
+    </div>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/js/swiper.min.js"></script>
+  <script src="/static/js/asd.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+{% endblock content %}

@@ -58,6 +58,7 @@ img {width:100%;}
       -ms-flex-align: center;
       -webkit-align-items: center;
       align-items: center;
+      max-width: 250px;
     }
 
 

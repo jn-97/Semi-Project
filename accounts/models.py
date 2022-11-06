@@ -9,3 +9,8 @@ class User(AbstractUser):
                                 format='JPEG',
                                 options={'quality': 50})
     following = models.ManyToManyField('self', symmetrical=False, related_name='follower')
+    contact = models.CharField(max_length=20)
+    address = models.CharField(max_length=100)
+    city = models.CharField(max_length=50)
+    country = models.CharField(max_length=30)
+    about_me= models.TextField()

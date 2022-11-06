@@ -31,10 +31,10 @@
               <div>
                 <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarTogglerDemo01">
                   <div class="d-flex align-items-center">
-                    <a class="navbar-brand mr-2 text-dark" href="{% url 'restaurants:index' %}">밥사조</a>
+                    <a class="navbar-brand mr-2 text-white" href="{% url 'restaurants:index' %}">밥사조</a>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                       <li class="nav-item">
-                        <a class="nav-link active p-0 text-dark" aria-current="page" href="{% url 'restaurants:index' %}">KDT NO.1 맛집 서비스</a>
+                        <a class="nav-link active p-0 text-white" aria-current="page" href="{% url 'restaurants:index' %}">KDT NO.1 맛집 서비스</a>
                       </li>
                     </ul>
                   </div>
@@ -59,18 +59,18 @@
                 {% if user.is_active %}
                   <button type="button" class="btn text-center">
                     {% if user.profile %}
-                      <img class=" rounded-5" src="{{ user.profile.url }}" width="37" height="37">
+                      <img class=" rounded-5" src="{{ user.profile.url }}" style="height:36px; width:36px;">
                     {% else %}
-                      <img class=" rounded-5" src="{% static 'profile.jpeg' %}" width="37" height="37" alt="">
+                      <img class=" rounded-5" src="{% static 'profile.jpeg' %}" style="height:36px; width:36px;">
                     {% endif %}
-                    <a class="text-decoration-none text-dark" href="{% url 'accounts:detail' request.user.id %}">회원정보</a>
+                    <a class="text-decoration-none text-white" href="{% url 'accounts:detail' request.user.id %}">회원정보</a>
                   </button>
                   <button type="button" class="btn text-center">
-                    <a href="{% url 'accounts:logout' %}" class="text-decoration-none text-black">로그아웃</a>
+                    <a href="{% url 'accounts:logout' %}" class="text-decoration-none text-white">로그아웃</a>
                   </button>
                 {% else %}
                   <button type="button" class="btn text-center">
-                    <a class="text-decoration-none text-dark" href="{% url 'accounts:signup' %}">회원가입</a>
+                    <a class="text-decoration-none text-white" href="{% url 'accounts:signup' %}">회원가입</a>
                   </button>
                   <button type="button" class="btn text-center">
                     <a href="{% url 'accounts:login' %}" class="text-decoration-none text-black">로그인</a>
@@ -88,13 +88,13 @@
       <hr class="mb-1 hrs">
       <div class="col-8 d-flex justify-content-evenly m-auto my-5">
         <span>
-          <a href="" class="text-decoration-none text-black">맛집찾기</a>
+          <a href="" class="text-decoration-none text-white">맛집찾기</a>
         </span>
         <span>
-          <a href="" class="text-decoration-none text-black">테마</a>
+          <a href="" class="text-decoration-none text-white">테마</a>
         </span>
         <span>
-          <a href="" class="text-decoration-none text-black">마켓</a>
+          <a href="" class="text-decoration-none text-white">마켓</a>
         </span>
       </div>
       <!-- 표지 and 캐러셀-->

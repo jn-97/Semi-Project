@@ -1,0 +1,104 @@
+.top-txt-on {
+  font-size: 13px;
+  text-decoration: none;
+  color: #ff7400;
+}
+
+.top-txt {
+  color:gray;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.material-symbols-outlined {
+  padding: 0.5rem;
+}
+
+.map-img {
+  width: 100%;
+  height: 400px;
+}
+
+.tag-hotplace-ul {
+  height: 8rem;
+  padding: 0;
+  margin: 0;
+}
+
+.tag-hotplace-li {
+  float: left;
+  list-style: none;
+  padding-right: 1.5rem;
+  padding-top: 13px;
+}
+
+.tag-hotplace-aa {
+  text-decoration: none;
+  text-align: center;
+  color: white;
+  border: 1px solid black;
+  background-color: black;
+  border-radius: 100px;
+  padding: 0px 15px;
+  display: block;
+}
+
+.tag-hotplace-aa:hover {
+  color: antiquewhite;
+}
+
+.tag-hotplace-a {
+  text-decoration: none;
+  text-align: center;
+  color: #ff7400;
+  border: 1px solid #ff7400;
+  border-radius: 100px;
+  padding: 0 17px;
+  display: block;
+}
+
+.tag-hotplace-a:hover {
+  color: #BA4160;
+}
+
+.bi-caret-down-fill {
+  color:#ff7400;
+}
+
+.modal-btn {
+  border: 2px solid #ff7400;
+  border-radius: 50px;
+  width: 350px;
+}
+
+.modal-btn:hover {
+  border: 2px solid #ff7400;
+  border-radius: 50px;
+}
+
+.menu-div {
+  height: 4rem;
+  background-color: rgba(255, 208, 56, 0.952);
+
+}
+
+.menu-div2:hover {
+  background-color: black;
+}
+
+.menu-txt {
+  text-decoration: none;
+  font-size: 25px;
+  line-height: 65px;
+  color:black;
+}
+
+.menu-txt:hover {
+  color: white;
+}
+
+.profile-img {
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+}

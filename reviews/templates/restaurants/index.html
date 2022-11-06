@@ -60,9 +60,13 @@
 
               <!-- 로그인 -->
               <div>
-
                 {% if user.is_active %}
                   <button type="button" class="btn text-center">
+                    {% if user.profile %}
+                      <img class=" rounded-5" src="{{ user.profile.url }}" width="37" height="37">
+                    {% else %}
+                      <img class=" rounded-5" src="{% static 'profile.jpeg' %}" width="37" height="37" alt="">
+                    {% endif %}
                     <a class="text-decoration-none text-dark" href="{% url 'accounts:detail' request.user.id %}">회원정보</a>
                   </button>
                   <button type="button" class="btn text-center">

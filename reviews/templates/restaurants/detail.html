@@ -3,7 +3,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,99 +11,139 @@
     <link rel="stylesheet" href="{% static 'css/detail.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     {% bootstrap_css %}
   </head>
-
-  <body class="container">
-    <!-- image -->
-    <h2 class="my-5">{{ restaurant.name }}</h2>
-    <div class="d-flex justify-content-between">
-      <div>
-        {% if restaurant.image1 %}
-          <img src="{{ restaurant.image1.url }}" class="card-img-top" weight='251' height='251'>
-        {% else %}
-          <img src="https://dummyimage.com/251x251/000000/c4c4c4" class="card-img-top" weight='251' height='251'>
-        {% endif %}
+  <body style="font-family: sans-serif;">
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg bg-light fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled">Disabled</a>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
       </div>
-      <div>
-        {% if restaurant.image2 %}
-          <img src="{{ restaurant.image2.url }}" class="card-img-top" weight='251' height='251'>
-        {% else %}
-          <img src="https://dummyimage.com/251x251/000000/c4c4c4" class="card-img-top" weight='251' height='251'>
-        {% endif %}
+    </nav>
+    
+    
+    <div class="container">
+      <!-- Title -->
+      <div class="my-4 twelve">
+        <h1>{{ restaurant.name }}</h1>
       </div>
-      <div>
-        {% if restaurant.image3 %}
-          <img src="{{ restaurant.image3.url }}" class="card-img-top" weight='251' height='251'>
-        {% else %}
-          <img src="https://dummyimage.com/251x251/000000/c4c4c4" class="card-img-top" weight='251' height='251'>
-        {% endif %}
-      </div>
-      <div>
-        {% if restaurant.image4 %}
-          <img src="{{ restaurant.image4.url }}" class="card-img-top" weight='251' height='251'>
-        {% else %}
-          <img src="https://dummyimage.com/251x251/000000/c4c4c4" class="card-img-top" weight='251' height='251'>
-        {% endif %}
-      </div>
-      <div>
-        {% if restaurant.image5 %}
-          <img src="{{ restaurant.image5.url }}" class="card-img-top" weight='251' height='251'>
-        {% else %}
-          <img src="https://dummyimage.com/251x251/000000/c4c4c4" class="card-img-top" weight='251' height='251'>
-        {% endif %}
-      </div>
-    </div>
-
-    <!-- header -->
-    <div class="mt-5 container">
-      <div class="d-flex justify-content-between">
-        <div>
-          <h5 class="fw-bold mb-0">지역</h5>
-          <p>{{ restaurant.region }}</p>
-          <h5 class="fw-bold mb-0">업종</h5>
-          <p>{{ restaurant.sorted }}</p>
-          <h5 class="fw-bold mb-0">매장소개</h5>
-          <p>{{ restaurant.introduce }}</p>
-          <h5 class="fw-bold mb-0">전화번호</h5>
-          <p>{{ restaurant.number }}</p>
-          <h5 class="fw-bold mb-0">주소</h5>
-          <p>{{ restaurant.address }}</p>
-          <h5 class="fw-bold mb-0">영업시간</h5>
-          <p>{{ restaurant.runtime }}</p>
-          <h5 class="fw-bold mb-0">휴무일</h5>
-          <p>{{ restaurant.closing }}</p>
+      <div class="d-flex justify-content-center shadow bg-body rounded">
+        <div class="card" style="width: 100%;">
+          <div class="card-header" style="background-color: white;">
+            <ul class="nav nav-pills card-header-pills">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">info</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Comment</a>
+              </li>
+            </ul>
+          </div>
+          <div class="row g-0">
+            <div class="col-md-4">
+              {% if restaurant.image1 %}
+              <img src="{{ restaurant.image1.url }}" class="img-fluid rounded-start" style="width:100%; height:100%;" alt="...">
+              {% endif %}
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <!-- 좋아요 조회수 댓글수 -->
+                  <div class="d-flex justify-content-between text-center" style="height:40px;">
+                    <div class="d-inline-flex">
+                      <div class="vertical-align: middle;">
+                        <i style="color:red; line-height: 40px; vertical-align: middle;" class="hart bi bi-heart-fill"></i>
+                        <span style="line-height: 40px; vertical-align: middle;">{{ restaurant.want_go.count }}</span>
+                      </div>
+                      <div class="vertical-align: middle;" style="margin-right: 10px; margin-left: 10px;">
+                        <span style="line-height: 40px; vertical-align: middle;" class="material-symbols-outlined">visibility</span>
+                        <span style="line-height: 40px; vertical-align: middle;">{{ restaurant.hits }}</span>
+                      </div>
+                      <div class="vertical-align: middle;">
+                        <span style="line-height: 40px; vertical-align: middle;" class="material-symbols-outlined">edit</span>
+                        <span style="line-height: 40px; vertical-align: middle;">{{ restaurant.comment_set.count }}</span>
+                      </div>
+                    </div>
+                    <div class="d-flex" style="height:40px;">
+                      <div class="vertical-align: middle;">
+                      {% if request.user.is_authenticated %}
+                        {% if request.user in restaurant.like_want_go.all %}
+                          <a class="title_link" href="{% url 'restaurants:like' restaurant.pk %}">
+                            <a href="{% url 'restaurants:like' restaurant.pk %}">
+                              <button type="button" class="btn btn-danger p-2"><i style="color:white;" class="bi bi-heart-fill"></i>Like</button>
+                            </a>
+                          </a>
+                        {% else %}
+                          <a href="{% url 'restaurants:like' restaurant.pk %}">
+                            <button type="button" class="btn btn-outline-danger p-2"><i style="color:red; margin-right:4px;" class="bi bi-heart"></i>Like</button>
+                          </a>
+                        {% endif %}
+                      {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                </h5>
+                <div style="height:3rem;">
+                  <span class="fw-bold">영업시간</span>
+                  <span>{{ restaurant.runtime }}</span>
+                </div>             
+                <div style="height:3rem;">
+                  <span class="fw-bold">휴무일</span>
+                  <span>{{ restaurant.closing }}</span>
+                </div>
+                <div style="height:3rem;">
+                  <span class="fw-bold">전화번호</span>
+                  <span>{{ restaurant.number }}</span>
+                </div>
+                <div style="height:3rem;">
+                  <span class="fw-bold">주소</span>
+                  <span>{{ restaurant.address }}</span>
+                </div>
+                <div>
+                  <span class="fw-bold">매장소개</span>
+                  <p>{{ restaurant.introduce }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- 좋아요 / 조회수-->
-      <div class="mt-4 d-flex text-center" style="height:40px;">
-        <div style="margin-right: 10px;">
-          <i style="color:red; line-height: 40px; vertical-align: middle;" class="hart bi bi-heart-fill"></i>
-          <span style="line-height: 40px; vertical-align: middle;">{{ restaurant.want_go.count }}</span>
-        </div>
-        <div class="vertical-align: middle;">
-          <span style="line-height: 40px; vertical-align: middle;" class="material-symbols-outlined">visibility</span>
-          <span style="line-height: 40px; vertical-align: middle;">{{ restaurant.hits }}</span>
-        </div>
-      </div>
-      <div>
-        {% if request.user.is_authenticated %}
-          {% if request.user in restaurant.like_want_go.all %}
-            <a class="title_link" href="{% url 'restaurants:like' restaurant.pk %}">
-              <i style="color:red;" class="hart bi bi-heart-fill"></i>
-            </a>
-          {% else %}
-            <a href="{% url 'restaurants:like' restaurant.pk %}">
-              <i style="color:red;" class="hart bi bi-heart"></i>
-            </a>
-            <p>좋아요</p>
-          {% endif %}
-        {% endif %}
-      </div>
-      <!-- 댓글 -->
-      <div class="mt-2">
-        <h4>댓글 작성</h4>
+      <!-- 리뷰 작성 -->
+      <div class="my-5">
+        <h4>리뷰 작성</h4>
         {% if request.user.is_authenticated %}
           <form action="{% url 'restaurants:comment_create' restaurant.pk %}" method="POST">
             {% csrf_token %}
@@ -112,94 +151,83 @@
             <button class="float-end btn btn-outline-primary ">작성</button>
           </form>
         {% endif %}
-
       </div>
-      <!-- 댓글 -->
-      <div class="py-2">
-        {% if request.user.is_authenticated %}
 
-          <div class=" py-5">
-            <h6 class="mt-3">
-              댓글 수 :
-              {{ restaurant.comment_set.count }}</h6>
-            <hr>
-          {% endif %}
-          {% for comment in comments %}
+      <!-- 리뷰 -->
+      {% for comment in comments %}        
+      <div class="mt-5">
+        <p class=" fw-bold fs-5 m-0">{{ comment.user.username }}
+          <a class="title_link" href="{% url 'accounts:detail' comment.user.pk %}">
+            {% if user.profile %}
+            <img src="{{ user.profile.url }}" style="width:42px; height:42px;" class="rounded-circle">
+            {% else %}
+            <img alt="Image placeholder" src="{% static 'profile.jpeg' %}" style="width:42px; height:42px;" class="rounded-circle">
+            {% endif %}
+          </a>   
+       </p>
+        <p class="fs-6">{{ comment.created_at|date:"SHORT_DATETIME_FORMAT" }}</p>
+
+        <div>
+          <form action="{% url 'restaurants:comment_delete' restaurant.pk comment.pk %}" method="POST">
+            {% csrf_token %}
             <div>
-              <div>
-                <p class=" fw-bold fs-5 m-0">{{ comment.user.username }}
-                  <a class="title_link" href="{% url 'accounts:detail' comment.user.pk%}">
-                    <i style="color: black;" class="bi bi-person-circle px-2"></i>
-                  </a>
-                </p>
-                <p class="fs-6">{{ comment.created_at|date:"SHORT_DATETIME_FORMAT" }}</p>
-                <p class="m-0 fs-6">{{ comment.content }}</p>
-
-                <div>
-                  <form action="{% url 'restaurants:comment_delete' restaurant.pk comment.pk %}" method="POST">
-                    {% csrf_token %}
-                    <div>
-                      {% if comment.grade == 1 %}
-                        <p>
-                          <i>⭐️</i>
-                          <i style="color:rgb(245, 220, 10);" class="hart bi bi-star"></i>
-                          <i style="color:rgb(245, 220, 10);" class="hart bi bi-star"></i>
-                          <i style="color:rgb(245, 220, 10);" class="hart bi bi-star"></i>
-                          <i style="color:rgb(245, 220, 10);" class="hart bi bi-star"></i>
-                        </p>
-                      {% elif comment.grade == 2 %}
-                        <i>⭐️</i>
-                        <i>⭐️</i>
-                        <i style="color:rgb(245, 220, 10);" class="hart bi bi-star"></i>
-                        <i style="color:rgb(245, 220, 10);" class="hart bi bi-star"></i>
-                        <i style="color:rgb(245, 220, 10);" class="hart bi bi-star"></i>
-                      {% elif comment.grade == 3 %}
-                        <i>⭐️</i>
-                        <i>⭐️</i>
-                        <i>⭐️</i>
-                        <i style="color:rgb(245, 220, 10);" class="hart bi bi-star"></i>
-                        <i style="color:rgb(245, 220, 10);" class="hart bi bi-star"></i>
-                      {% elif comment.grade == 4 %}
-                        <i>⭐️</i>
-                        <i>⭐️</i>
-                        <i>⭐️</i>
-                        <i>⭐️</i>
-                        <i style="color:rgb(245, 220, 10);" class="hart bi bi-star"></i>
-                      {% elif comment.grade == 5 %}
-                        <i>⭐️</i>
-                        <i>⭐️</i>
-                        <i>⭐️</i>
-                        <i>⭐️</i>
-                        <i>⭐️</i>
-                      </p>
-                    {% endif %}
-                  </div>
-                  {% if request.user == comment.user %}
-                    <button class="btn btn-link p-0" style="color: red; text-decoration: none;">삭제</button>
-                  </form>
-                {% endif %}
-              </div>
+              {% if comment.grade == 1 %}
+                  <i>⭐️</i>
+                  <i style="color:rgb(245, 220, 10);" class="hart bi bi-star"></i>
+                  <i style="color:rgb(245, 220, 10);" class="hart bi bi-star"></i>
+                  <i style="color:rgb(245, 220, 10);" class="hart bi bi-star"></i>
+                  <i style="color:rgb(245, 220, 10);" class="hart bi bi-star"></i>  
+              {% elif comment.grade == 2 %}
+                <i>⭐️</i>
+                <i>⭐️</i>
+                <i style="color:rgb(245, 220, 10);" class="hart bi bi-star"></i>
+                <i style="color:rgb(245, 220, 10);" class="hart bi bi-star"></i>
+                <i style="color:rgb(245, 220, 10);" class="hart bi bi-star"></i>
+              {% elif comment.grade == 3 %}
+                <i>⭐️</i>
+                <i>⭐️</i>
+                <i>⭐️</i>
+                <i style="color:rgb(245, 220, 10);" class="hart bi bi-star"></i>
+                <i style="color:rgb(245, 220, 10);" class="hart bi bi-star"></i>
+              {% elif comment.grade == 4 %}
+                <i>⭐️</i>
+                <i>⭐️</i>
+                <i>⭐️</i>
+                <i>⭐️</i>
+                <i style="color:rgb(245, 220, 10);" class="hart bi bi-star"></i>
+              {% elif comment.grade == 5 %}
+                <i>⭐️</i>
+                <i>⭐️</i>
+                <i>⭐️</i>
+                <i>⭐️</i>
+                <i>⭐️</i>
+              {% endif %}
             </div>
-            <hr>
-            {% empty %}
-            <p>댓글이 없습니다.</p>
-          {% endfor %}
+            <p class="m-0 fs-6">{{ comment.content }}</p>
+            {% if request.user == comment.user %}
+            <button class="btn btn-link p-0" style="color: red; text-decoration: none;">삭제</button>
+          </form>
+        {% endif %}  
+        <hr>   
         </div>
-      </div>
+      {% empty %}
+      <p>댓글이 없습니다.</p>
+      {% endfor %}
+
+      <!-- 게시글 작성자만 삭제 수정 목록 -->
       <div>
-        <a class="float-end btn btn-dark m-1" href="{% url 'restaurants:index' %}">목록</a>
+        <a class="float-end btn btn-outline-secondary m-1" href="{% url 'restaurants:index' %}">목록</a>
         {% if request.user == restaurant.user %}
-          <a class="float-end btn btn-primary m-1" href="{% url 'restaurants:update' restaurant.pk %}">
+          <a class="float-end btn btn-outline-primary m-1" href="{% url 'restaurants:update' restaurant.pk %}">
             수정
           </a>
-          <a class="float-end btn btn-danger m-1" href="{% url 'restaurants:delete' restaurant.pk %}">
+          <a class="float-end btn btn-outline-danger m-1" href="{% url 'restaurants:delete' restaurant.pk %}">
             삭제
           </a>
         {% endif %}
-      </div>
+      </div>   
     </div>
-  </div>
+    
 </body>
 {% bootstrap_javascript %}
-
 </html>

@@ -10,11 +10,6 @@
 }
 
 
-.hrs { display: block; height: 1px;
-  border: 0; border-top: 1px solid #fff;
-  margin: 1em 0; padding: 0; }
-
-
 .navbar{
   background:transparent !important;
   }
@@ -23,6 +18,17 @@
     font-size: 19px;
     line-height: 22px;
     color:black;
+}
+
+.line_break {
+  width:1000px;
+  height: 5px;
+  float: left;
+  color: black;
+  padding-top: 3px;
+  background-color: rgba(255,255,255,.5);
+  border: none;  
+  border-bottom: 3px solid black; 
 }
 
 .bi-google {
@@ -84,10 +90,11 @@ img {width:100%;}
 
 
 
-    .fixed-top.scrolled {
-      background-color: #fff;
-      transition: background-color 200ms, linear;
-    }
+.fixed-top.scrolled {
+    background-color: #fff;
+    transition: background-color 200ms, linear;
+  }
+
 
 
 .divider:after,

@@ -29,12 +29,18 @@ var swiper = new Swiper('.swiper-container', {
     }
   });
 
-  $(function () {
-    $(document).scroll(function () {
-      var $nav = $(".fixed-top");
-      $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
-    });
+
+$(document).ready(function(){       
+  var scroll_pos = 0;
+  $(document).scroll(function() { 
+      scroll_pos = $(this).scrollTop();
+      if(scroll_pos > 150) {
+          $(".fonti").css('color', 'black');
+      } else {
+          $(".fonti").css('color', 'white');
+      }
   });
+});
 
   $( document ).ready(function () {
     $(".moreBox").slice(0, 3).show();

@@ -1,0 +1,371 @@
+{% load django_bootstrap5 %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>taste</title>
+  <!-- CSS only -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <link rel="icon" href="https://cdn.discordapp.com/attachments/993057372455043102/1019519216929476619/unknown.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" href="{% static 'css/taste.css' %}">
+</head>
+<body>
+
+  <!-- navbar -->
+  <div class="sticky-top">
+    <nav class="navbar navbar-expand-lg bg-light">   
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'restaurants:index' %}">밥사조</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <form class="d-flex" role="search" style="min-width:550px;">
+              <input class="form-control me-2" type="search" placeholder="오늘 뭐 먹지?" aria-label="Search">
+              <button class="p-0 btn btn-outline-secondary" type="submit">
+                <span class="material-symbols-outlined">search</span>
+              </button>
+            </form>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <div class="d-inline-flex">
+                {% if user.is_active %}
+                <div class="vertical-align: middle;">
+                  <button type="button" class="p-0 btn text-center" style="line-height: 40px; vertical-align: middle;">
+                    {% if user.profile %}
+                      <img class=" rounded-5" src="{{ user.profile.url }}" width="37" height="37">
+                    {% else %}
+                      <img class=" rounded-5" src="{% static 'profile.jpeg' %}" width="37" height="37" alt="">
+                    {% endif %}
+                    <a class="text-decoration-none text-dark" href="{% url 'accounts:detail' request.user.id %}" style="line-height: 40px; vertical-align: middle;">{{ user.username }}</a>
+                  </button>
+                  <button type="button" class="p-0 btn text-center" style="line-height: 40px; vertical-align: middle;">
+                    <a href="{% url 'accounts:logout' %}" class="text-decoration-none text-black" style="line-height: 40px; vertical-align: middle;">로그아웃</a>
+                  </button>
+                </div>
+                {% else %}
+                <div class="vertical-align: middle;">
+                  <button type="button" class="btn text-center" style="line-height: 40px; vertical-align: middle;">
+                    <a class="text-decoration-none text-dark" href="{% url 'accounts:signup' %}">회원가입</a>
+                  </button>
+                  <button type="button" class="btn text-center" style="line-height: 40px; vertical-align: middle;">
+                    <a href="{% url 'accounts:login' %}" class="text-decoration-none text-black">로그인</a>
+                  </button>
+                </div>
+                {% endif %}
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="d-flex justify-content-center" style="background-color:white; height:3rem;">
+      <span style="line-height:50px;">현재 보고있는 지역은
+      <!-- Button trigger modal -->
+      <button type="button" class="btn modal-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        서울 종로구 사직로<i class="bi bi-caret-down-fill"></i>
+      </button>
+      입니다.</span>
+    </div>
+
+    <div class="d-flex justify-content-around menu-div">
+      <div class="menu-div2"><a class="menu-txt" href="#menu01">추천 맛집</a></div>
+      <div class="menu-div2"><a class="menu-txt" href="#menu02">테마</a></div>
+      <div class="menu-div2"><a class="menu-txt" href="#menu03">리뷰</a></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- header -->
+    <header>
+      <div>
+        <div class="my-1 d-flex justify-content-center">
+          <iframe class="map-img" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3161.979626728107!2d126.97313041589197!3d37.579097429795446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2c74aeddea1%3A0x8b3046532cc715f6!2z6rK967O16raB!5e0!3m2!1sko!2skr!4v1667268343160!5m2!1sko!2skr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <div class="d-flex flex-column">
+          <div>
+            <p class="my-2 fw-bold" style="font-size: 20px">이 지역 추천 태그</p>
+            <ul class="tag-hotplace-ul">
+              <li class="tag-hotplace-li">
+                <a class="tag-hotplace-aa" href="#">전체</a>
+              </li>
+              <li class="tag-hotplace-li">
+                <a class="tag-hotplace-a" href="#">한식</a>
+              </li>
+              <li class="tag-hotplace-li">
+                <a class="tag-hotplace-a" href="#">중식</a>
+              </li>
+              <li class="tag-hotplace-li">
+                <a class="tag-hotplace-a" href="#">양식</a>
+              </li>
+              <li class="tag-hotplace-li">
+                <a class="tag-hotplace-a" href="#">일식</a>
+              </li>
+              <li class="tag-hotplace-li">
+                <a class="tag-hotplace-a" href="#">서울</a>
+              </li>
+              <li class="tag-hotplace-li">
+                <a class="tag-hotplace-a" href="#">강남</a>
+              </li>
+              <li class="tag-hotplace-li">
+                <a class="tag-hotplace-a" href="#">제주도</a>
+              </li>
+              <li class="tag-hotplace-li">
+                <a class="tag-hotplace-a" href="#">부산</a>
+              </li>
+              <li class="tag-hotplace-li">
+                <a class="tag-hotplace-a" href="#">강릉</a>
+              </li>
+              <li class="tag-hotplace-li">
+                <a class="tag-hotplace-a" href="#">홍대</a>
+              </li>
+              <li class="tag-hotplace-li">
+                <a class="tag-hotplace-a" href="#">건대</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 카드 -->
+    <div class="mb-3">
+      <span class="fw-bold" id="menu01" style="font-size: 20px">추천맛집</span>
+      <span class="content-subtxt" style="color:grey;">맛있는 밥사조와 매장 방문 고객님들이 함께 엄선한 인기 맛집입니다.</span>
+    </div>
+    <div class="mb-3 row row-cols-1 row-cols-md-3 g-4 blogBox moreBox">
+      <div class="col">
+        <div class="card h-100">
+          <img src="{% static '어방어점.jpg' %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">어방어점</h5>
+            <p class="card-text">안심식당은 '덜어먹기 가능한 도구 비치・제공', '위생적 수저관리' , '종사자마스크 착용'을 준수하는 곳으로 소재지 지자체의 인증을 받은 음식점 입니다.</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </div>
+        </div>
+      </div>
+      <div class="col blogBox moreBox">
+        <div class="card h-100">
+          <img src="{% static '엽떡.jpg' %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">동대문엽기떡볶이</h5>
+            <p class="card-text">안심식당은 '덜어먹기 가능한 도구 비치・제공', '위생적 수저관리' , '종사자마스크 착용'을 준수하는 곳으로 소재지 지자체의 인증을 받은 음식점 입니다.</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </div>
+        </div>
+      </div>
+      <div class="col blogBox moreBox">
+        <div class="card h-100">
+          <img src="{% static '앗싸곱창.jpeg' %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">앗싸곱창</h5>
+            <p class="card-text">안심식당은 '덜어먹기 가능한 도구 비치・제공', '위생적 수저관리' , '종사자마스크 착용'을 준수하는 곳으로 소재지 지자체의 인증을 받은 음식점 입니다.</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </div>
+        </div>
+      </div>
+      <div class="col blogBox moreBox" style="display: none;">
+        <div class="card h-100">
+          <img src="{% static '밀밭.jpeg' %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">밀밭칼국수</h5>
+            <p class="card-text">안심식당은 '덜어먹기 가능한 도구 비치・제공', '위생적 수저관리' , '종사자마스크 착용'을 준수하는 곳으로 소재지 지자체의 인증을 받은 음식점 입니다.</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </div>
+        </div>
+      </div>
+      <div class="col blogBox moreBox" style="display: none;">
+        <div class="card h-100">
+          <img src="{% static '어방어점.jpg' %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">어방어점</h5>
+            <p class="card-text">안심식당은 '덜어먹기 가능한 도구 비치・제공', '위생적 수저관리' , '종사자마스크 착용'을 준수하는 곳으로 소재지 지자체의 인증을 받은 음식점 입니다.</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </div>
+        </div>
+      </div>
+      <div class="col blogBox moreBox" style="display: none;">
+        <div class="card h-100">
+          <img src="{% static '앗싸곱창.jpeg' %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">앗싸곱창</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </div>
+        </div>  
+      </div>   
+    </div>
+    <div class="mb-5" id="loadMore" style="">
+      <a href="#" style="text-decoration:none;">더보기</a>
+    </div>
+
+    <div>
+      <div class="mb-3">
+        <span class="fw-bold" id="menu02" style="font-size: 20px">테마</span>
+        <span class="content-subtxt" style="color:grey;">언론과 미디어에 소개된 테마가 있는 밥사조 맛집입니다.</span>
+      </div>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col">
+        <div class="card h-100">
+          <img src="{% static '보쌈.jpeg' %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">놀부보쌈</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="{% static '조개구이.jpg' %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">택이네조개전골</h5>
+            <p class="card-text">안심식당은 '덜어먹기 가능한 도구 비치・제공', '위생적 수저관리' , '종사자마스크 착용'을 준수하는 곳으로 소재지 지자체의 인증을 받은 음식점 입니다.</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="{% static '짬뽕.jpg' %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">뽕사부</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="{% static '보쌈.jpeg' %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">놀부보쌈</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="{% static '쭈삼.jpeg' %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">소문난쭈꾸미생삼겹</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="{% static '짬뽕.jpg' %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">뽕사부</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 리뷰 -->
+    <div class="mt-4" id="menu03">
+      <span class="m-0 fw-bold">리뷰</span>
+      <span class="m-0" style="font-size:13px; color:gray">고객님들이 직접 작성하신 따끈한 후기와 평가를 들어보세요.</span>
+    </div>
+
+    <div id="menu03">
+      <hr color="black" size="5px">
+    </div>
+
+    <div class="row">
+      <div class="col-md-2" style="text-align:center;">
+        <img alt="Image placeholder" src="{% static '맛있는 밥사조3.png' %}" class="profile-img">
+        <p>밥사조</p>
+      </div>
+      <div class="col-md-10">
+        <h3>신전떡볶이</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, perspiciatis, possimus animi eaque fugiat pariatur voluptates odit amet praesentium ipsam perferendis modi veniam eum voluptatibus delectus cupiditate aliquam, nobis molestiae.</p>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-2" style="text-align:center;">
+        <img alt="Image placeholder" src="{% static '애옹.jpg' %}" class="profile-img">
+        <p>애옹</p>
+      </div>
+      <div class="col-md-10">
+        <h3>두찜</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, perspiciatis, possimus animi eaque fugiat pariatur voluptates odit amet praesentium ipsam perferendis modi veniam eum voluptatibus delectus cupiditate aliquam, nobis molestiae.</p>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-2" style="text-align:center;">
+        <img alt="Image placeholder" src="{% static '꿀꿀잉.jpg' %}" class="profile-img">
+        <p>꿀꿀잉</p>
+      </div>
+      <div class="col-md-10">
+        <h3>덕화원</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, perspiciatis, possimus animi eaque fugiat pariatur voluptates odit amet praesentium ipsam perferendis modi veniam eum voluptatibus delectus cupiditate aliquam, nobis molestiae.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade modal-fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/static/js/taste.js"></script>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</html>

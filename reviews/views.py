@@ -114,3 +114,10 @@ def comment_delete(request, pk, comment_pk):
     else:
         messages.warning(request, "작성자만 삭제 가능합니다.")
     return redirect('restaurants:detail', pk)
+
+def taste(request):
+    restaurants = Restaurant.objects.order_by('-pk')
+    context = {
+        "restaurants": restaurants,
+    }
+    return render(request, "restaurants/taste.html", context)

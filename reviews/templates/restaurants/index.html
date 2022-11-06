@@ -1,21 +1,17 @@
+{% load django_bootstrap5 %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="ko">
-
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Document</title>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="icon" href="https://cdn.discordapp.com/attachments/993057372455043102/1019519216929476619/unknown.png">
     <link rel="stylesheet" href="https://unpkg.com/swiper@8 /swiper-bundle.min.css">
-    <link rel="stylesheet" href="fonts/icomoon/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="static/css/index.css">
-
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/5.2.0/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -113,7 +109,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/css/swiper.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/js/swiper.min.js"></script>
 <div class="container">
-  <div class="row mb-3 mt-1 p-0">
+  <div class="row mb-3 mt-5 p-0">
     <div class="col-md-12 p-0">
       <h3>당신을 위한 이 지역 HOT 매장추천</h3>
     </div>
@@ -122,35 +118,31 @@
     <!-- Swiper -->
     <div class="swiper-container">
       <div class="swiper-wrapper">
+        {% for restaurant in restaurants %}
         <div class="swiper-slide">
           <div class="row">
-            {% for restaurant in restaurants %}
-              <div class="col-md-3 mb-5">
-                <div class="card">
+            <div class="col-md-5">
+              <div class="card">
+                <div class="card-img">
                   {% if restaurant.image1 %}
-                    <a href="{% url 'restaurants:detail' restaurant.pk %}"><img src="{{ restaurant.image1.url }}" class="card-img-top"></a>
+                  <img src="{{ restaurant.image1.url }}" style="height: 200px;" class="card-img-top">
                   {% else %}
-                    <img src="https://dummyimage.com/310x310/000000/c4c4c4" class="card-img-top" weight='310' height='310'>
+                  <img src="https://dummyimage.com/310x310/000000/c4c4c4" style="height: 200px;" class="card-img-top">
                   {% endif %}
-                  <div class="card-body">
-                    <h4 class="card-title">
-                      <a class="title_link text-decoration-none" href="{% url 'restaurants:detail' restaurant.pk %}">{{ restaurant.name }}</a>
-                    </h4>
-                    <p class="mt-1 mb-0">{{ restaurant.runtime}}</p>
-                    <small class="mb-0">{{ restaurant.closing }}</small>
-                  </h4>
-                  <p class="text-muted my-0">
-                    조회수 :
-                    {{ restaurant.hits }}</p>
+                </div>
+                <div class="card-body">
+                  <h5>{{ restaurant.name }}</h5>
+                  <h4 class="pt-1 pb-2">50000원</h4>         
+                  <button type= "button" class="btn btn-outline-danger btn-block btn-sm">구매하기</button>
                 </div>
               </div>
             </div>
-          {% endfor %}
+          </div>
         </div>
+        {% endfor %}
       </div>
     </div>
   </div>
-</div>
 </div>
 
 <!--맛집 생생후기 -->
@@ -171,7 +163,7 @@
             <h5 class="card-title fw-bold">지브리파크 부럽지 않은 국내 지브리 갬성 카페 5</h5>
             <p class="card-text">'지브리 애니메이션'을 한 번이라도 봤다면...</p>
             <p class="card-text">
-              <img class="rounded-circle" src="https://img.siksinhot.com/seeon/1447234040666036.png?w=49&h=48&c=Y" alt="">
+              {% comment %} <img class="rounded-circle" src="https://img.siksinhot.com/seeon/1447234040666036.png?w=49&h=48&c=Y" alt=""> {% endcomment %}
               <small class="text-muted">Edit by
                 <span class="text-success">맛박사</span></small>
             </p>
@@ -189,7 +181,7 @@
             <h5 class="card-title fw-bold">발 담그고 먹는 백숙집! 전국 계곡 맛집 5곳</h5>
             <p class="card-text">오늘은 휴가철 찾기 좋은 계곡 맛집 5곳을 소개합니다.</p>
             <p class="card-text">
-              <img class="rounded-circle" src="https://img.siksinhot.com/seeon/1447234040666036.png?w=49&h=48&c=Y" alt="">
+              {% comment %} <img class="rounded-circle" src="https://img.siksinhot.com/seeon/1447234040666036.png?w=49&h=48&c=Y" alt=""> {% endcomment %}
               <small class="text-muted">Edit by
                 <span class="text-success">맛박사</span></small>
             </p>
@@ -207,7 +199,7 @@
             <h5 class="card-title fw-bold">업무추진비가 알려주는 서귀포 공무원 맛집 12곳</h5>
             <p class="card-text">3개월간의 업무추진비 자료를 분석하여...</p>
             <p class="card-text">
-              <img class="rounded-circle" src="https://img.siksinhot.com/seeon/1447234040666036.png?w=49&h=48&c=Y" alt="">
+              {% comment %} <img class="rounded-circle" src="https://img.siksinhot.com/seeon/1447234040666036.png?w=49&h=48&c=Y" alt=""> {% endcomment %}
               <small class="text-muted">Edit by
                 <span class="text-success">맛박사</span></small>
             </p>

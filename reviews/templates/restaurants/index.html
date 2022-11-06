@@ -67,7 +67,7 @@
                     <a href="{% url 'accounts:login' %}" class="text-decoration-none text-black">로그인</a>
                   {% endif %}
                 </button>
-                <span class="badge bg-dark text-white text-decoration-none rounded-4 ms-1">0</span>
+                <a href="{% url 'accounts:detail' user.pk %}" class="badge bg-dark text-white text-decoration-none rounded-4 ms-1">0</a>
               </div>
             </div>
           </div>

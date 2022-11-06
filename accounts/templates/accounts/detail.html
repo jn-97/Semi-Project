@@ -15,7 +15,11 @@
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
+                  {% if user.profile %}
+                  <img src="{{ user.profile.url }}">
+                  {% else %}
                   <img alt="Image placeholder" src="{% static 'profile.jpeg' %}">
+                  {% endif %}
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
                   <span class="mb-0 text-sm  font-weight-bold">{{ user.username }}</span>
@@ -40,7 +44,11 @@
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
                   <a href="#">
+                    {% if user.profile %}
+                    <img src="{{ user.profile.url }}" style="width:72px; height:72px;" class="rounded-circle">
+                    {% else %}
                     <img src="{% static 'profile.jpeg' %}" style="width:72px; height:72px;" class="rounded-circle">
+                    {% endif %}
                   </a>
                 </div>
               </div>
@@ -81,7 +89,7 @@
                   <h3 class="mb-0">계정</h3>
                 </div>
                 <div class="col-4 text-right">
-                  <a href="#!" class="btn btn-sm btn-outline-primary" style="background-color: lightskyblue; color:ghostwhite">프로필 수정하기</a>
+                  <a href="{% url 'accounts:update' user.pk %}" class="btn btn-sm btn-outline-primary" style="background-color: lightskyblue; color:ghostwhite">프로필 수정하기</a>
                 </div>
               </div>
             </div>

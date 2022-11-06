@@ -4,7 +4,7 @@ var swiper = new Swiper('.swiper-container', {
       prevEl: '.swiper-button-prev',
     },
     slidesPerView: 1,  //초기값 설정 모바일값이 먼저!!
-    spaceBetween: 10,
+    spaceBetween: 1,
     pagination: {
       el: ".swiper-pagination",
       clickable: true,
@@ -19,6 +19,10 @@ var swiper = new Swiper('.swiper-container', {
         slidesPerView: 3,  //브라우저가 1024보다 클 때
         spaceBetween: 50,
       },
+      3000: {
+        slidesPerView: 4,  
+        spaceBetween: 0,
+      }
     },
     autoplay:{
         delay: 10000,

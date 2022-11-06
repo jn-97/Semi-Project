@@ -121,7 +121,7 @@
         {% for restaurant in restaurants %}
         <div class="swiper-slide">
           <div class="row">
-            <div class="col-md-5">
+            <div class="p-0 col lg-4">
               <div class="card">
                 <div class="card-img">
                   {% if restaurant.image1 %}
@@ -141,6 +141,9 @@
         </div>
         {% endfor %}
       </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
     </div>
   </div>
 </div>

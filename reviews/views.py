@@ -45,6 +45,7 @@ def detail(request, pk):
     }
     return render(request, "restaurants/detail.html", context)
 
+@permission_required('reviews.update', raise_exception=True)
 @login_required
 def update(request, pk):
     restaurant = Restaurant.objects.get(pk=pk)
@@ -66,6 +67,7 @@ def update(request, pk):
         messages.warning(request, "작성자만 수정 가능합니다.")
         return redirect("restaurants:detail", pk)
 
+@permission_required('reviews.delete', raise_exception=True)
 @login_required
 def delete(request, pk):
     restaurant = Restaurant.objects.get(pk=pk)

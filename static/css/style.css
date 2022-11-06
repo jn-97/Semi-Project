@@ -1,0 +1,67 @@
+.a{
+  background-image: url('../배경화면.jpeg');
+  width:100%; 
+  height:580px;
+}
+.carousel{
+  width:450px;
+  height:300px;
+}
+
+hr { display: block; height: 1px;
+  border: 0; border-top: 1px solid #fff;
+  margin: 1em 0; padding: 0; }
+
+
+.navbar{
+  background:transparent !important;
+  }
+
+.bi-search{
+    font-size: 19px;
+    line-height: 22px;
+    color:black;
+}
+
+.card-text {
+  overflow: hidden;
+  white-space: normal;
+  line-height: 1.2;
+  word-wrap: break-word;
+  display: -webkit-box;
+  /*몇 줄*/
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+
+.divider {border: 1px solid #ccc;}
+img {width:100%;}
+
+    .swiper-container {
+      width: 100%;
+      height: 100%;
+    }
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+
+
+    .fixed-top.scrolled {
+      background-color: #fff;
+      transition: background-color 200ms, linear;
+    }

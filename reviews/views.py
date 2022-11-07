@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required,permission_required
 from django.db.models import Count, Avg
 
 def index(request):
-    restaurants = Restaurant.objects.order_by('-pk')
+    restaurants = Restaurant.objects.all()
     context = {
         "restaurants": restaurants,
     }

@@ -28,11 +28,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <form class="d-flex" role="search" style="min-width:550px;">
-              <input class="form-control me-2" type="search" placeholder="오늘 뭐 먹지?" aria-label="Search">
-              <button class="p-0 btn btn-outline-secondary" type="submit">
-                <span class="material-symbols-outlined">search</span>
-              </button>
+            <form action="{% url 'search_app:searchResult' %}" method="GET">
+              {% csrf_token %}
+              <div class="search-bar input-group">
+                <input class="form-control rounded-2 text-left btn-lg" type="search" style="min-width: 400px;" placeholder="돈 주고 별 사는 서비스는 그만! 후기들은 만드는 찐 별맛집" aria-label="Search" name="q">
+                <button type="submit" class="btn" style="background-color: #C8A666">
+                  <i class="bi bi-search"></i>
+                </button>
+              </div>
             </form>
           </ul>
           <ul class="navbar-nav">

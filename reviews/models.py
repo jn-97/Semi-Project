@@ -17,6 +17,8 @@ class Restaurant(models.Model):
     introduce = models.CharField(max_length=1000)
     number = models.CharField(max_length=20)
     address = models.CharField(max_length=100)
+    latitude = models.CharField(max_length=30)
+    longitude = models.CharField(max_length=30)
 
     image1 = ProcessedImageField(
         upload_to = 'images/',

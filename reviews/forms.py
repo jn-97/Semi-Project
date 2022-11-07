@@ -5,7 +5,7 @@ class RestaurantForm(forms.ModelForm):
     class Meta:
         model = Restaurant
 
-        fields = ['sorted','region','name','introduce','number','address', 'runtime', 'closing', 'image1', 'image2', 'image3', 'image4', 'image5']
+        fields = ['sorted','region','name','introduce','number','address', 'runtime', 'closing', 'image1', 'image2', 'image3', 'image4', 'image5','latitude', 'longitude']
         labels = {
             'sorted' : '한식, 중식, 양식, 일식',
             'region' : '지역',
@@ -20,6 +20,8 @@ class RestaurantForm(forms.ModelForm):
             'image3': '사진3',
             'image4': '사진4',
             'image5': '사진5',
+            'latitude': '위도',
+            'longitude': '경도',
         }
 
     def __init__(self, *args, **kwargs):

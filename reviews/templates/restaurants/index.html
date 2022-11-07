@@ -81,7 +81,7 @@
           </div>
             <div class="col-8 d-flex justify-content-evenly m-auto my-5">
               <span>
-                <a href="" class="text-decoration-none fonti">맛집찾기</a>
+                <a href="{% url 'restaurants:taste' %}" class="text-decoration-none fonti">맛집찾기</a>
               </span>
               <span>
                 <a href="" class="text-decoration-none fonti">테마</a>
@@ -122,9 +122,9 @@
                   {% endif %}
                 </div>
                 <div class="card-body">
-                  <h5>{{ restaurant.name }}</h5>
-                  <h4 class="pt-1 pb-2">50000원</h4>         
-                  <button type= "button" class="btn btn-outline-danger btn-block btn-sm">구매하기</button>
+                  <h5>{{ restaurant.number }}</h5>
+                  <h4 class="pt-1 pb-2">{{ restaurant.name }}</h4>         
+                  <a href="{% url 'restaurants:detail' restaurant.pk %}" type= "button" class="btn btn-outline-danger btn-block btn-sm">더보기</a>
                 </div>
               </div>
             </div>
@@ -314,7 +314,7 @@
 <hr>
 <div>
 <footer class="text-center mt-5">
-  Django-project by 이호빈,김지연,이상백, 이은진
+  Django-project by 이호빈,김지연,이상백
 </footer>
 </div>
 </body>

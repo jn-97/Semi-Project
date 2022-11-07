@@ -84,9 +84,13 @@ def update(request, pk):
 @login_required
 def follow(request, pk):
     user = get_user_model().objects.get(pk=pk)
-    if user != request.user:
-        if request.user.following.filter(pk=pk).exists():
-            request.user.following.remove(user)
-        else:
-            request.user.following.add(user)
-    return redirect('accounts:detail', pk)
+    if request.user == user:
+        messages.warning(request, "스스로 팔로우 할 수 없다.")
+        return redirect("accounts:detail", pk)
+    if request.user in user.follower.all():
+        user.follower.remove(request.user)
+    else:
+        user.follower.add(request.user)
+    return redirect("accounts:detail", pk)
+
+

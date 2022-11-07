@@ -63,7 +63,7 @@
                     {% else %}
                       <img class=" rounded-5" src="{% static 'profile.jpeg' %}" style="height:36px; width:36px;">
                     {% endif %}
-                    <a class="text-decoration-none fonti" href="{% url 'accounts:detail' request.user.id %}">회원정보</a>
+                    <a class="text-decoration-none fonti" href="{% url 'accounts:detail' request.user.id %}">{{ user.username }}</a>
                   </button>
                   <button type="button" class="btn text-center">
                     <a href="{% url 'accounts:logout' %}" class="text-decoration-none fonti">로그아웃</a>

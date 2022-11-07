@@ -116,7 +116,7 @@
               <div class="card">
                 <div class="card-img">
                   {% if restaurant.image1 %}
-                  <img src="{{ restaurant.image1.url }}" style="height: 200px;" class="card-img-top">
+                  <a href="{% url 'restaurants:detail' restaurant.pk %}" type= "button"><img src="{{ restaurant.image1.url }}" style="height: 200px;" class="card-img-top"></a>
                   {% else %}
                   <img src="https://dummyimage.com/310x310/000000/c4c4c4" style="height: 200px;" class="card-img-top">
                   {% endif %}

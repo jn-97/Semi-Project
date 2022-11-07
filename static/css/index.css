@@ -19,17 +19,11 @@
     line-height: 22px;
     color:black;
 }
-
-.line_break {
-  width:1000px;
-  height: 5px;
-  float: left;
-  color: black;
-  padding-top: 3px;
-  background-color: rgba(255,255,255,.5);
-  border: none;  
-  border-bottom: 3px solid black; 
+.fixed-top.scrolled {
+  background-color: #fff !important;
+  transition: background-color 200ms linear;
 }
+
 
 .bi-google {
   background: conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat;

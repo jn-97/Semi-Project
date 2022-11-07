@@ -19,16 +19,16 @@ def signup(request):
             return redirect('restaurants:index')
     else:
         user_form = CustomUserForm()
-    cxt = {
+    context = {
         'user_form' : user_form
     }
-    return render(request, 'accounts/signup.html', cxt)
+    return render(request, 'accounts/signup.html', context)
 
 @login_required
-def delete(req, pk):
+def delete(request, pk):
     user = get_user_model().objects.get(pk=pk)
     user.delete()
-    logout(req, user)
+    logout(request, user)
     return redirect('accounts:any')
 
 def log_in(request):
@@ -55,38 +55,38 @@ def log_in(request):
     return render(request, 'accounts/login.html')
 
 @login_required
-def log_out(req):
-    logout(req)
+def log_out(request):
+    logout(request)
     return redirect('restaurants:index')
 
-def detail(req, pk):
+def detail(request, pk):
     user = get_user_model().objects.get(pk=pk)
-    cxt = {
+    context = {
         'user' : user
     }
-    return render(req, 'accounts/detail.html', cxt)
+    return render(request, 'accounts/detail.html', context)
 
 @login_required
-def update(req, pk):
+def update(request, pk):
     user = get_user_model().objects.get(pk=pk)
-    if req.method == 'POST':
-        update_user = CustomUpdateForm(req.POST, req.FILES, instance=user)
+    if request.method == 'POST':
+        update_user = CustomUpdateForm(request.POST, request.FILES, instance=user)
         if update_user.is_valid():
             update_user.save()
             return redirect('accounts:detail', pk)
     else:
         update_user = CustomUpdateForm(instance=user)
-    cxt = {
+    context = {
         'update_user' : update_user
     }
-    return render(req, 'accounts/update.html', cxt)
+    return render(request, 'accounts/update.html', context)
 
 @login_required
-def follow(req, pk):
+def follow(request, pk):
     user = get_user_model().objects.get(pk=pk)
-    if user != req.user:
-        if req.user.following.filter(pk=pk).exists():
-            req.user.following.remove(user)
+    if user != request.user:
+        if request.user.following.filter(pk=pk).exists():
+            request.user.following.remove(user)
         else:
-            req.user.following.add(user)
+            request.user.following.add(user)
     return redirect('accounts:detail', pk)

@@ -24,23 +24,24 @@
       <div class="a">
         <div class="fixed-top" id="top">
           <nav class="navbar navbar-expand-lg bg-light" style="display:flex; flex-direction: column;">
-            <div class="container">
+            <div class="container py-4">
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div>
                 <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarTogglerDemo01">
                   <div class="d-flex align-items-center">
-                    <a class="navbar-brand mr-2 fonti" href="{% url 'restaurants:index' %}">밥사조</a>
+                    <img src="{% static '1.png'%}" style="width:40px; height:40px; background-color: #C8A666;">
+                    <a class="navbar-brand mr-2 fonti" href="{% url 'restaurants:index' %}" style="font-family: serif; font-weight: bold; color:white">밥사조</a>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                       <li class="nav-item">
-                        <a class="nav-link active p-0 fonti" aria-current="page" href="{% url 'restaurants:index' %}" >KDT NO.1 맛집 서비스</a>
+
+                        <a class="nav-link active p-0 fonti" aria-current="page" href="{% url 'restaurants:index' %}" style="font-family: serif; font-weight: bold; color:white">KDT NO.1 맛집 서비스</a>
                       </li>
                     </ul>
                   </div>
                 </div>
               </div>
-
               <!-- search -->
               <div class="class">
                 <form action="{% url 'search_app:searchResult' %}" method="GET">
@@ -63,31 +64,33 @@
                     {% else %}
                       <img class=" rounded-5" src="{% static 'profile.jpeg' %}" style="height:36px; width:36px;">
                     {% endif %}
+
                     <a class="text-decoration-none fonti" href="{% url 'accounts:detail' request.user.id %}">{{ user.username }}</a>
+
                   </button>
                   <button type="button" class="btn text-center">
-                    <a href="{% url 'accounts:logout' %}" class="text-decoration-none fonti">로그아웃</a>
+                    <a href="{% url 'accounts:logout' %}" class="text-decoration-none fonti" style="font-family: serif; font-weight: bold; color:white">로그아웃</a>
                   </button>
                 {% else %}
                   <button type="button" class="btn text-center">
-                    <a class="text-decoration-none fonti" href="{% url 'accounts:signup' %}">회원가입</a>
+                    <a class="text-decoration-none fonti" href="{% url 'accounts:signup' %}" style="font-family: serif; font-weight: bold; color:white">회원가입</a>
                   </button>
                   <button type="button" class="btn text-center">
-                    <a href="{% url 'accounts:login' %}" class="text-decoration-none fonti">로그인</a>
+                    <a href="{% url 'accounts:login' %}" class="text-decoration-none fonti" style="font-family: serif; font-weight: bold; color:white">로그인</a>
                   </button>
                 {% endif %}
               </a>
             </div>
           </div>
-            <div class="col-8 d-flex justify-content-evenly m-auto my-5">
+            <div class="col-8 d-flex justify-content-evenly m-auto py-3" style="border-top-style: solid; border-color:white; width:100%; border-top-width: 1px;">
               <span>
-                <a href="{% url 'restaurants:taste' %}" class="text-decoration-none fonti">맛집찾기</a>
+                <a href="{% url 'restaurants:taste' %}" class="fonti text-decoration-none " style="font-family: serif; font-weight: bold; font-size:18px; color:white">맛집찾기</a>
               </span>
               <span>
-                <a href="" class="text-decoration-none fonti">테마</a>
+                <a href="" class="text-decoration-none fonti" style="font-family: serif; font-weight: bold; font-size:18px; color:white">테마</a>
               </span>
               <span>
-                <a href="" class="text-decoration-none fonti">마켓</a>
+                <a href="" class="text-decoration-none fonti" style="font-family: serif; font-weight: bold; font-size:18px; color:white">마켓</a>
               </span>
             </div>
         </div>
@@ -99,16 +102,17 @@
 <!-- 당신을 위한 이 지역 HOT 매장추천-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/css/swiper.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/js/swiper.min.js"></script>
-<div class="container">
-  <div class="row mb-3 mt-5 p-0">
-    <div class="col-md-12 p-0">
-      <h4 class="text-center" style="font-family: 'stylish', sans-serif;">당신을 위한 이 지역 HOT 매장추천</h4>
+<div class="sect_01">
+  <div class="container">
+    <div class="row mb-3 p-0">
+      <div class="col-md-12 p-0">
+        <h4 class="text-center mt-4" style="font-family: san-serif">당신을 위한 이 지역 HOT 매장추천</h4>
+      </div>
     </div>
-  </div>
   <div class="row">
     <!-- Swiper -->
     <div class="swiper-container">
-      <div class="swiper-wrapper d-flex justify-content-center">
+      <div class="swiper-wrapper d-flex justify-content-center ">
         {% for restaurant in restaurants %}
         <div class="swiper-slide">
           <div class="row">
@@ -138,7 +142,7 @@
     </div>
   </div>
 </div>
-
+</div>
 <!--맛집 생생후기 -->
 <div style="background-color: #DCDCDC">
 <div class="container flex-row mt-3">
@@ -317,6 +321,7 @@
   Django-project by 이호빈,김지연,이상백
 </footer>
 </div>
+
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/js/swiper.min.js"></script>
 <script src="/static/js/asd.js"></script>

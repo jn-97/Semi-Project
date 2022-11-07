@@ -21,7 +21,7 @@ var swiper = new Swiper('.swiper-container', {
       },
       3000: {
         slidesPerView: 4,  
-        spaceBetween: 0,
+        spaceBetween: 10,
       }
     },
     autoplay:{
@@ -41,6 +41,16 @@ $(document).ready(function(){
       }
   });
 });
+
+$(function () {
+  $(document).scroll(function () {
+    var $nav = $(".fixed-top");
+    $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+  });
+});
+
+
+
 
   $( document ).ready(function () {
     $(".moreBox").slice(0, 3).show();

@@ -8,9 +8,12 @@
   height:300px;
 }
 
-hr { display: block; height: 1px;
-  border: 0; border-top: 1px solid #fff;
-  margin: 1em 0; padding: 0; }
+.sect_01 {
+  background-image: url('https://ilmi.kr/resource/images/main/best_bg.png');
+  width:100%;
+  height: 480px;
+  background-repeat: no-repeat;
+}
 
 
 .navbar{
@@ -58,7 +61,7 @@ img {width:100%;}
       -ms-flex-align: center;
       -webkit-align-items: center;
       align-items: center;
-      max-width: 250px;
+      max-width: 220px;
     }
 
 

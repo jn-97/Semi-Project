@@ -9,6 +9,10 @@
 - 망고 플레이트 : https://www.mangoplate.com/
 - 식신 : https://www.siksinhot.com/
 
+## Figma / ERD
+- Figma를 이용해 화면 설계
+- ERD 구축하는 사이트에서 ERD 구축
+
 ## 서비스 주요 기능
 - navbar
     - 로고
